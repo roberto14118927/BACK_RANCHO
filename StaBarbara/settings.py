@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     'Social',
     'Control_G',
     'Control_P',
@@ -68,12 +69,34 @@ REST_FRAMEWORK = {
     ],
 }
 
+
+#Si aun no te funciona, cambia el valor por True. 
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ALLOWED_ORIGINS  = [
+     "http://localhost:8000" , 
+     "http://localhost:8080" ,
+]
+
 CORS_ALLOW_METHODS = (
     'DELETE',
     'GET',
     'POST',
     'PUT',
 )
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -83,6 +106,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'StaBarbara.urls'
