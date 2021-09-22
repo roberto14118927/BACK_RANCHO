@@ -1,0 +1,42 @@
+Carpetas:
+    StaBarbara : --> doing
+        Es donde se almacena toda la configuración del projecto de Django. 
+    
+    .env:       --> doing
+        Contiene la configuración del proyecto, base de datos, llave privada de projecto. 
+        No eliminar por que se utiliza para la configuración del archivo settings.py 
+
+    Login:      --> To do
+        Contiene toda la información sobre los inicios de sesión.
+    
+    Social :    --> Done
+        Contiene todos los metodos relacionados a la creación, edición, eliminación
+        y listado de todos los usuarios.
+    
+    Control_E:      --> Done
+        Contiene la información de los metodos para:
+            * Control de empadre
+            * Tacto
+    
+    Control_T:     --> Done
+        Contiene toda la información del termo criogenico.
+            * Empadre de termo
+            * Inventario de termo criogenico
+    
+    Control_M:      --> Done
+        Contiene toda la información de los medicos. 
+            * Empadre medico
+            * Medico especialista
+    
+    Control_G:      --> Done
+        Contiene toda la información relacionado al control del ganado.
+            * Ganado
+            * Raza
+    
+    Control_P:      --> Done
+        Contiene toda la información del control de peso del ganado.
+            * Peso 
+            * Vacas asociadas
+            * Enfermedades
+
+    
