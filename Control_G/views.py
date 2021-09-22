@@ -48,7 +48,35 @@ class RazaCreate(APIView):
                 return Response(serializer.data , status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+
+#ACTUALIZA UN GANADO
+class RazaUpdate(APIView):
+    #permission_classes =[IsAuthenticated]
+    @method_decorator(csrf_exempt)
+    def put (self, request , id):
+        try:
+            cows = Raza.objects.get(id = id)
+            serializer = RazaSerializers(cows , request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data , status= status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
     
+
+#ELIMINA UN GANADO 
+class RazaDelete(APIView):
+    #permission_classes =[IsAuthenticated]
+    @method_decorator(csrf_exempt)
+    def delete(self, request , id):
+        try:
+            user = Raza.objects.get(id =id)
+            user.delete()
+            return Response( status= status.HTTP_200_OK)
+        except Exception as e:
+            return Response(status = status.HTTP_400_BAD_REQUEST)
 
 
 
