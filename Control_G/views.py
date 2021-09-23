@@ -97,10 +97,10 @@ class GanadoListById(APIView):
     def get (self , request , id=0):
         try:
             if (id > 0): 
-                queryset = list(Ganado.objects.filter(id=id).values())
+                queryset = Ganado.objects.all().filter(id=id)
                 if len(queryset) > 0: 
-                    cows = queryset[0]
-                    return Response(cows , status= status.HTTP_200_OK)
+                    serializer = GanadoSerializers(queryset, many= True)
+                    return Response(data= serializer.data , status= status.HTTP_200_OK)
                 else:
                     return Response(status = status.HTTP_404_NOT_FOUND)
         except Exception as e:

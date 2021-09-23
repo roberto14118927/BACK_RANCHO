@@ -6,14 +6,22 @@ from Control_P.models import Peso_Ganando , Vacas_asociadas , Enfermedades_Ganad
 class Peso_Serializer(serializers.ModelSerializer):
     class Meta: 
         model = Peso_Ganando
-        fields = ('__all__')
+        fields = ['id' , 'id_ganado' , 'dia_peso' , 'mes_peso',
+                'anio_peso' , 'ganancia_peso_mensual_kilo' ,
+                 'ganancia_peso_mensual_porcentaje' , 'estado_vaca',
+                 'peso']
+        depth = 1
 
 class Enfermedades_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Enfermedades_Ganado
-        fields = ('__all__')
+        fields = ['id' , 'nombre' , 'numero_casos',
+        'numero_animales' , 'porcentaje_infectado',
+        'vacas' , 'toros']
+        depth = 1
     
 class Vacas_Serializer(serializers.ModelSerializer):
     class Meta: 
         model = Vacas_asociadas
-        fields = ('__all__')
+        fields = ['id' , 'id_enfermedad' , 'id_ganado' ]
+        depth = 1

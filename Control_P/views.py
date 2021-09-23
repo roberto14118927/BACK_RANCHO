@@ -1,3 +1,5 @@
+from Control_G import serializer
+from Control_G.models import Ganado
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -17,11 +19,11 @@ class Peso_List(APIView):
     #permission_classes = [IsAuthenticated]
     def get (self , request ):
         try:
-            queryset = Peso_Ganando.objects.all()
+            queryset = Peso_Ganando.objects.all().order_by("id")
             serializer = Peso_Serializer(queryset, many= True)
             return Response(data = serializer.data , status= status.HTTP_200_OK)
-        except Exception as e: 
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        except: 
+            return Response(status = status.HTTP_400_BAD_REQUEST)
 
 
 #TRAE EL PESO DEL GANADO POR ID
@@ -30,10 +32,10 @@ class PesoList_By_Id(APIView):
     def get (self , request , id=0):
         try:
             if (id > 0): 
-                queryset = list(Peso_Ganando.objects.filter(id=id).values())
+                queryset = Peso_Ganando.objects.all().filter(id=id)
                 if len(queryset) > 0: 
-                    cows = queryset[0]
-                    return Response(cows , status= status.HTTP_200_OK)
+                    serializer = Peso_Serializer(queryset, many= True)
+                    return Response(data=serializer.data , status= status.HTTP_200_OK)
                 else:
                     return Response(status = status.HTTP_404_NOT_FOUND)
         except Exception as e:
@@ -44,14 +46,32 @@ class PesoList_By_Id(APIView):
 class Peso_Create(APIView):
     @method_decorator(csrf_exempt)
     def post (self, request):
+        print("Datos: " , request.data)
+        id = request.data["id_ganado"]
         try:
-            serializer = Peso_Serializer(data = request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data , status=status.HTTP_201_CREATED)
-        except Exception as e:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
-    
+            topic = Ganado.objects.get(id=id)
+        except:
+            return Response(status = status.HTTP_400_BAD_REQUEST)
+
+        cow_data = request.data
+        cow_data["id_ganado"] = topic
+
+        new_cow = Peso_Ganando.objects.create(
+            id_ganado = cow_data["id_ganado"],
+            dia_peso = cow_data["dia_peso"],
+            mes_peso = cow_data["mes_peso"],
+            anio_peso = cow_data["anio_peso"],
+            ganancia_peso_mensual_kilo = cow_data["ganancia_peso_mensual_kilo"],
+            ganancia_peso_mensual_porcentaje = cow_data["ganancia_peso_mensual_porcentaje"],
+            estado_vaca = cow_data["estado_vaca"],
+            peso = cow_data["peso"]
+        )
+
+        new_cow.save()
+        serializer = Peso_Serializer(new_cow)
+
+        return Response(serializer.data , status=status.HTTP_201_CREATED)
+
 
 #ACTUALIZA UN PESO DE GANADO
 class Peso_Update(APIView):
@@ -89,7 +109,7 @@ class Enfermedades_List(APIView):
     #permission_classes = [IsAuthenticated]
     def get (self , request ):
         try:
-            queryset = Enfermedades_Ganado.objects.all()
+            queryset = Enfermedades_Ganado.objects.all().order_by("id")
             serializer = Enfermedades_Serializer(queryset, many= True)
             return Response(data = serializer.data , status= status.HTTP_200_OK)
         except Exception as e: 
@@ -102,10 +122,10 @@ class Enfermedades_List_By_Id(APIView):
     def get (self , request , id=0):
         try:
             if (id > 0): 
-                queryset = list(Enfermedades_Ganado.objects.filter(id=id).values())
+                queryset = Enfermedades_Ganado.objects.all().filter(id=id)
                 if len(queryset) > 0: 
-                    cows = queryset[0]
-                    return Response(cows , status= status.HTTP_200_OK)
+                    serializer = Peso_Serializer(queryset, many= True)
+                    return Response(data=serializer.data , status= status.HTTP_200_OK)
                 else:
                     return Response(status = status.HTTP_404_NOT_FOUND)
         except Exception as e:
@@ -161,7 +181,7 @@ class Asociation_List(APIView):
     #permission_classes = [IsAuthenticated]
     def get (self , request ):
         try:
-            queryset = Vacas_asociadas.objects.all()
+            queryset = Vacas_asociadas.objects.all().order_by("id")
             serializer = Vacas_Serializer(queryset, many= True)
             return Response(data = serializer.data , status= status.HTTP_200_OK)
         except Exception as e: 
@@ -174,10 +194,10 @@ class Asociaciones_List_By_Id(APIView):
     def get (self , request , id=0):
         try:
             if (id > 0): 
-                queryset = list(Vacas_asociadas.objects.filter(id=id).values())
+                queryset = Vacas_asociadas.objects.all().filter(id=id)
                 if len(queryset) > 0: 
-                    cows = queryset[0]
-                    return Response(cows , status= status.HTTP_200_OK)
+                    serializer = Vacas_Serializer(queryset , many=True)
+                    return Response(data=serializer.data , status= status.HTTP_200_OK)
                 else:
                     return Response(status = status.HTTP_404_NOT_FOUND)
         except Exception as e:
@@ -188,11 +208,26 @@ class Asociaciones_List_By_Id(APIView):
 class Asociacion_Create(APIView):
     @method_decorator(csrf_exempt)
     def post (self, request):
+        print("Datos: " , request.data)
+
+        id_ganado = request.data["id_ganado"]
+        id_enfermedad = request.data["id_enfermedad"]
         try:
-            serializer = Vacas_asociadas(data = request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data , status=status.HTTP_201_CREATED)
-        except Exception as e:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
-    
+            topic_g = Ganado.objects.get(id=id_ganado)
+            topic_e = Enfermedades_Ganado.objects.get(id=id_enfermedad)
+        except:
+            return Response(status = status.HTTP_400_BAD_REQUEST)
+
+        cow_data = request.data
+        cow_data["id_ganado"] = topic_g
+        cow_data["id_enfermedad"] = topic_e
+
+        new_cow = Vacas_asociadas.objects.create(
+            id_ganado = cow_data["id_ganado"],
+            id_enfermedad = cow_data["id_enfermedad"]
+        )
+
+        new_cow.save()
+        serializer = Vacas_Serializer(new_cow)
+
+        return Response(serializer.data , status=status.HTTP_201_CREATED)

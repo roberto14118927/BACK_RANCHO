@@ -7,7 +7,8 @@ from Control_G.models import Raza , Ganado
 class RazaSerializers(serializers.ModelSerializer):
     class Meta: 
         model = Raza
-        fields = ('__all__')
+        fields = ['id' , 'raza']
+        depth = 1
 
 
 class GanadoSerializers(serializers.ModelSerializer):

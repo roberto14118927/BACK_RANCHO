@@ -21,5 +21,5 @@ urlpatterns = [
     #urls para asociación
     path(r'create_aso/' , views.Asociacion_Create.as_view() , name=("Create new aso")),
     path(r'list_aso/' , views.Asociation_List.as_view() , name=("All aso")),
-    path(r'list_id/<int:id>' , views.Asociaciones_List_By_Id.as_view() , name=("aso by id")),
+    path(r'list_aso_id/<int:id>' , views.Asociaciones_List_By_Id.as_view() , name=("aso by id")),
 ]
