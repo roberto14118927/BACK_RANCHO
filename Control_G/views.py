@@ -1,8 +1,7 @@
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
 from rest_framework.response import Response 
-from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import status 
 from django.utils.decorators import method_decorator
 
 from Control_G.serializer import RazaSerializers , GanadoSerializers
@@ -20,7 +19,6 @@ class RazaList(APIView):
             return Response(data = serializer.data , status= status.HTTP_200_OK)
         except Exception as e: 
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
-
 
 #TRAE UNA RAZA POR ID
 class RazaListById(APIView):
@@ -47,7 +45,7 @@ class RazaCreate(APIView):
                 serializer.save()
                 return Response(serializer.data , status=status.HTTP_201_CREATED)
         except Exception as e:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+            return Response(status = status.HTTP_400_BAD_REQUEST)
 
 
 #ACTUALIZA UN GANADO
@@ -79,8 +77,6 @@ class RazaDelete(APIView):
             return Response(status = status.HTTP_400_BAD_REQUEST)
 
 
-
-
 #------------ VIEWS PARA GANADO ---------------------------
 #TRAE TODOS LOS USUARIOS
 class GanadoList(APIView):
@@ -89,6 +85,7 @@ class GanadoList(APIView):
         try:
             queryset = Ganado.objects.all()
             serializer = GanadoSerializers(queryset, many= True)
+           
             return Response(data = serializer.data , status= status.HTTP_200_OK)
         except Exception as e: 
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
@@ -110,18 +107,43 @@ class GanadoListById(APIView):
             return Response(status = status.HTTP_404_NOT_FOUND)
                 
 
-#CREA UN NUEVO GANADO
 class GanadoCreate(APIView):
     @method_decorator(csrf_exempt)
-    def post (self, request):
+    def post(self , request):
+
+        id = request.data["id_raza"] 
         try:
-            serializer = GanadoSerializers(data = request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data , status=status.HTTP_201_CREATED)
-        except Exception as e:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+            topic = Raza.objects.get(id = id)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
     
+        cow_data = request.data
+        cow_data["id_raza"] = topic
+        new_cow = Ganado.objects.create(
+            nombre = cow_data["nombre"],
+            sexo = cow_data["sexo"],
+            id_raza = cow_data["id_raza"], 
+            num_economico = cow_data["num_economico"] ,
+            num_registro = cow_data ["num_registro"],
+            num_siniga =  cow_data["num_siniga"],
+            comentarios = cow_data["comentarios"],
+            dia_nacimiento = cow_data["dia_nacimiento"],
+            mes_nacimiento = cow_data["mes_nacimiento"],
+            anio_nacimiento = cow_data["anio_nacimiento"],
+            padre = cow_data ["padre"],
+            madre = cow_data["madre"] ,
+            dia_entrada_hato  = cow_data ["dia_entrada_hato"],
+            mes_entrada_hato  = cow_data["mes_entrada_hato"],
+            anio_entrada_hato  = cow_data["anio_entrada_hato"],
+            estado  = cow_data ["estado"],
+            condicion_estadia  = cow_data ["condicion_estadia"]
+        )
+
+        new_cow.save()
+        serializer = GanadoSerializers(new_cow)
+
+        return Response(serializer.data)
+
 
 #ACTUALIZA UN GANADO
 class GanadoUpdate(APIView):

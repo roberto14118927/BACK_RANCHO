@@ -1,6 +1,6 @@
-from django.urls import path, re_path
+from django.urls import path, re_path 
+from rest_framework import routers
 from Control_G import views
-
 
 urlpatterns = [
     #paths para ganado

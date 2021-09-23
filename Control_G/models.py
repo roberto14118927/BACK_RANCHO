@@ -6,7 +6,7 @@ class Raza(models.Model):
     raza = models.CharField(max_length=254)
 
     def __str__(self):
-        return self.name
+        return self.raza
 
     class Meta: 
         db_table = 'Raza'
@@ -16,7 +16,7 @@ class Ganado(models.Model):
 
     nombre = models.CharField(max_length=254)
     sexo = models.CharField(max_length=254)
-    id_raza = models.ForeignKey(Raza, on_delete= models.CASCADE)       #foreing Key 
+    id_raza = models.ForeignKey(Raza, on_delete= models.CASCADE , related_name="id_raza")       #foreing Key 
     num_economico = models.CharField(max_length=254)
     num_registro = models.CharField(max_length=254)
     num_siniga = models.CharField(max_length=254)
