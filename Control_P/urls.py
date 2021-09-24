@@ -22,4 +22,6 @@ urlpatterns = [
     path(r'create_aso/' , views.Asociacion_Create.as_view() , name=("Create new aso")),
     path(r'list_aso/' , views.Asociation_List.as_view() , name=("All aso")),
     path(r'list_aso_id/<int:id>' , views.Asociaciones_List_By_Id.as_view() , name=("aso by id")),
+    path(r'update_aso/<int:id>' , views.Asociacion_Update.as_view() , name=("Update asociacion")),
+    path(r'delete_aso/<int:id>' , views.Asociacion_Delete.as_view() , name=("Delete asociacion")),
 ]

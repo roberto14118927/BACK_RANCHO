@@ -19,6 +19,11 @@ class Enfermedades_Serializer(serializers.ModelSerializer):
         'numero_animales' , 'porcentaje_infectado',
         'vacas' , 'toros']
         depth = 1
+
+class Create_enfermedad(serializers.ModelSerializer):
+    class Meta:
+        model = Enfermedades_Ganado
+        fields = '__all__'
     
 class Vacas_Serializer(serializers.ModelSerializer):
     class Meta: 

@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 from Control_P.models import Peso_Ganando , Enfermedades_Ganado , Vacas_asociadas
-from Control_P.serializer import Peso_Serializer , Vacas_Serializer , Enfermedades_Serializer
+from Control_P.serializer import Create_enfermedad, Peso_Serializer , Vacas_Serializer , Enfermedades_Serializer
 
 
 #------------ VIEWS PARA EL PESO DEL GANADO ---------------------------
@@ -124,7 +124,7 @@ class Enfermedades_List_By_Id(APIView):
             if (id > 0): 
                 queryset = Enfermedades_Ganado.objects.all().filter(id=id)
                 if len(queryset) > 0: 
-                    serializer = Peso_Serializer(queryset, many= True)
+                    serializer = Enfermedades_Serializer(queryset, many= True)
                     return Response(data=serializer.data , status= status.HTTP_200_OK)
                 else:
                     return Response(status = status.HTTP_404_NOT_FOUND)
@@ -137,13 +137,13 @@ class Enfermedad_Create(APIView):
     @method_decorator(csrf_exempt)
     def post (self, request):
         try:
-            serializer = Enfermedades_Ganado(data = request.data)
+            serializer = Create_enfermedad(data = request.data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data , status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
-    
+
 
 #ACTUALIZA UNA ENFERMEDAD
 class Enfermedad_Update(APIView):
@@ -231,3 +231,33 @@ class Asociacion_Create(APIView):
         serializer = Vacas_Serializer(new_cow)
 
         return Response(serializer.data , status=status.HTTP_201_CREATED)
+
+
+
+#ACTUALIZA UNA ASOCIACIÓN
+class Asociacion_Update(APIView):
+    #permission_classes =[IsAuthenticated]
+    @method_decorator(csrf_exempt)
+    def put (self, request , id):
+        try:
+            cows = Vacas_asociadas.objects.get(id = id)
+            print("dato: " , request.data)
+            serializer = Vacas_Serializer(cows , request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data , status= status.HTTP_200_OK)
+        except Exception as e:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+    
+
+#ELIMINA UNa ASOCIACIÓN 
+class Asociacion_Delete(APIView):
+    #permission_classes =[IsAuthenticated]
+    @method_decorator(csrf_exempt)
+    def delete(self, request , id):
+        try:
+            user = Vacas_asociadas.objects.get(id =id)
+            user.delete()
+            return Response( status= status.HTTP_200_OK)
+        except Exception as e:
+            return Response(status = status.HTTP_400_BAD_REQUEST)
