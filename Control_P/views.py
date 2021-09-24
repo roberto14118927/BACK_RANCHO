@@ -229,9 +229,7 @@ class Asociacion_Create(APIView):
 
         new_cow.save()
         serializer = Vacas_Serializer(new_cow)
-
         return Response(serializer.data , status=status.HTTP_201_CREATED)
-
 
 
 #ACTUALIZA UNA ASOCIACIÓN
@@ -241,15 +239,14 @@ class Asociacion_Update(APIView):
     def put (self, request , id):
         try:
             cows = Vacas_asociadas.objects.get(id = id)
-            print("dato: " , request.data)
             serializer = Vacas_Serializer(cows , request.data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data , status= status.HTTP_200_OK)
-        except Exception as e:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        except:
+            return Response(status = status.HTTP_400_BAD_REQUEST)
     
-
+    
 #ELIMINA UNa ASOCIACIÓN 
 class Asociacion_Delete(APIView):
     #permission_classes =[IsAuthenticated]

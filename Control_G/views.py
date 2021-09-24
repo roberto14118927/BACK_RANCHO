@@ -14,7 +14,7 @@ class RazaList(APIView):
     #permission_classes = [IsAuthenticated]
     def get (self , request ):
         try:
-            queryset = Raza.objects.all()
+            queryset = Raza.objects.all().order_by("id")
             serializer = RazaSerializers(queryset, many= True)
             return Response(data = serializer.data , status= status.HTTP_200_OK)
         except Exception as e: 
@@ -83,7 +83,7 @@ class GanadoList(APIView):
     #permission_classes = [IsAuthenticated]
     def get (self , request ):
         try:
-            queryset = Ganado.objects.all()
+            queryset = Ganado.objects.all().order_by("id")
             serializer = GanadoSerializers(queryset, many= True)
            
             return Response(data = serializer.data , status= status.HTTP_200_OK)
