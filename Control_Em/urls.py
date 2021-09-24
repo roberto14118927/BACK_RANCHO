@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from Control_E import views
+from Control_Em import views
 
 
 

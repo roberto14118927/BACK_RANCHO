@@ -30,8 +30,14 @@ class Enfermedades_Ganado(models.Model):
     numero_casos = models.IntegerField()
     numero_animales = models.IntegerField()
     porcentaje_infectado = models.FloatField()
+
+    dia_detectado = models.IntegerField()
+    mes_detectado = models.IntegerField()
+    anio_detectado = models.IntegerField()
+
     vacas = models.IntegerField()
     toros = models.IntegerField()
+    
 
     def __str__(self):
         return self.nombre

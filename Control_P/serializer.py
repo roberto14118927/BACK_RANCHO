@@ -10,23 +10,24 @@ class Peso_Serializer(serializers.ModelSerializer):
                 'anio_peso' , 'ganancia_peso_mensual_kilo' ,
                  'ganancia_peso_mensual_porcentaje' , 'estado_vaca',
                  'peso']
-        depth = 1
+        depth = 10
 
 class Enfermedades_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Enfermedades_Ganado
         fields = ['id' , 'nombre' , 'numero_casos',
         'numero_animales' , 'porcentaje_infectado',
+        'dia_detectado' , 'mes_detectado', 'anio_detectado',
         'vacas' , 'toros']
-        depth = 1
+        depth = 10
 
 class Create_enfermedad(serializers.ModelSerializer):
     class Meta:
         model = Enfermedades_Ganado
-        fields = '__all__'
+        fields = ('__all__')
     
 class Vacas_Serializer(serializers.ModelSerializer):
     class Meta: 
         model = Vacas_asociadas
         fields = ['id' , 'id_enfermedad' , 'id_ganado' ]
-        depth = 1
+        depth = 10

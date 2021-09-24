@@ -86,7 +86,7 @@ class Peso_Update(APIView):
                 return Response(serializer.data , status= status.HTTP_200_OK)
 
         except Exception as e:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+            return Response(status = status.HTTP_400_BAD_REQUEST)
     
 
 #ELIMINA UN PESO DE GANADO 
@@ -113,7 +113,7 @@ class Enfermedades_List(APIView):
             serializer = Enfermedades_Serializer(queryset, many= True)
             return Response(data = serializer.data , status= status.HTTP_200_OK)
         except Exception as e: 
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+            return Response(status = status.HTTP_400_BAD_REQUEST)
 
 
 #TRAE LAS ENFERMEDADES POR ID
@@ -142,7 +142,7 @@ class Enfermedad_Create(APIView):
                 serializer.save()
                 return Response(serializer.data , status=status.HTTP_201_CREATED)
         except Exception as e:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+            return Response( status = status.HTTP_400_BAD_REQUEST)
 
 
 #ACTUALIZA UNA ENFERMEDAD
@@ -158,7 +158,7 @@ class Enfermedad_Update(APIView):
                 return Response(serializer.data , status= status.HTTP_200_OK)
 
         except Exception as e:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+            return Response(status = status.HTTP_400_BAD_REQUEST)
     
 
 #ELIMINA UN PESO DE GANADO 
@@ -185,7 +185,7 @@ class Asociation_List(APIView):
             serializer = Vacas_Serializer(queryset, many= True)
             return Response(data = serializer.data , status= status.HTTP_200_OK)
         except Exception as e: 
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+            return Response(status = status.HTTP_400_BAD_REQUEST)
 
 
 #TRAE LAS ASOCIACIONES POR ID

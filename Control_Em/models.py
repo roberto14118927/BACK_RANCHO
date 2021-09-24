@@ -1,4 +1,6 @@
 from django.db import models
+from django.db import models
+from django.db.models.fields import CharField
 from Control_G.models import Ganado
 
 
@@ -20,8 +22,8 @@ class Control_Empadre(models.Model):
     mes_prob_parto= models.IntegerField()
     anio_prob_parto = models.IntegerField()
 
-    id_toro = models.ForeignKey(Ganado , on_delete=models.CASCADE , related_name='%(class)s_requests_created')
-    vaca_id = models.ForeignKey(Ganado , on_delete=models.CASCADE )
+    id_toro = models.ForeignKey(Ganado , on_delete=models.CASCADE , related_name='id_vaca')
+    vaca_id = models.ForeignKey(Ganado , on_delete=models.CASCADE , related_name='id_toro')
 
 
     def __str__(self):
@@ -30,11 +32,10 @@ class Control_Empadre(models.Model):
     class Meta: 
         db_table = 'Control_empadre'
 
+
 class Tacto (models.Model):
-
-    datalle = models.CharField(max_length=254)
+    detalle = models.CharField(max_length=254)
     hallazgo = models.CharField(max_length=254)
-
     id_empadre = models.ForeignKey(Control_Empadre, on_delete= models.CASCADE)
 
     def __str__(self):

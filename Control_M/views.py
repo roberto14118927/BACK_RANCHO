@@ -3,10 +3,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response 
 from rest_framework import status
 from django.utils.decorators import method_decorator
+from Control_M import serializer
 
 
-from Control_M.serializer import Empadre_Serializers , Medico_Serializers
+from Control_M.serializer import Empadre_Serializers, Medico_Create_serializer , Medico_Serializers
 from Control_M.models import Empadre_medico , Medico_Especialista
+from Control_Em.models import Control_Empadre
 
 
 #------------ VIEWS PARA EMPADRE ------------------
@@ -15,11 +17,11 @@ class Empadre_List(APIView):
     #permission_classes = [IsAuthenticated]
     def get (self , request ):
         try:
-            queryset = Empadre_medico.objects.all()
+            queryset = Empadre_medico.objects.all().order_by("id")
             serializer = Empadre_Serializers(queryset, many= True)
             return Response(data = serializer.data , status= status.HTTP_200_OK)
         except Exception as e: 
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+            return Response( status = status.HTTP_400_BAD_REQUEST)
 
 
 #TRAE EMPADRE POR ID
@@ -28,10 +30,10 @@ class Empadre_ListById(APIView):
     def get (self , request , id=0):
         try:
             if (id > 0): 
-                queryset = list(Empadre_medico.objects.filter(id=id).values())
+                queryset = Empadre_medico.objects.filter(id=id)
                 if len(queryset) > 0: 
-                    cows = queryset[0]
-                    return Response(cows , status= status.HTTP_200_OK)
+                    serializer = Empadre_Serializers(queryset , many=True)
+                    return Response(data=serializer.data , status= status.HTTP_200_OK)
                 else:
                     return Response(status = status.HTTP_404_NOT_FOUND)
         except Exception as e:
@@ -42,14 +44,30 @@ class Empadre_ListById(APIView):
 class Empadre_Create(APIView):
     @method_decorator(csrf_exempt)
     def post (self, request):
+
+        id_t = request.data["id_medico"] 
+        id_v = request.data["id_empadre"]
+        
         try:
-            serializer = Empadre_Serializers(data = request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data , status=status.HTTP_201_CREATED)
-        except Exception as e:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
-    
+            topic_t = Medico_Especialista.objects.get(id=id_t)
+            topic_v = Control_Empadre.objects.get(id=id_v)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        cow_data = request.data
+        cow_data["id_medico"] = topic_t
+        cow_data["id_empadre"] = topic_v
+
+        new_cow = Empadre_medico.objects.create(
+            id_empadre = cow_data["id_empadre"],
+            id_medico = cow_data["id_medico"]
+        )
+
+        new_cow.save()
+        serializer = Empadre_Serializers(new_cow)
+
+        return Response(serializer.data , status= status.HTTP_201_CREATED)
+
 
 #ACTUALIZA UN EMPADRE
 class Empadre_Update(APIView):
@@ -64,7 +82,7 @@ class Empadre_Update(APIView):
                 return Response(serializer.data , status= status.HTTP_200_OK)
 
         except Exception as e:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+            return Response( status = status.HTTP_400_BAD_REQUEST)
     
 
 #ELIMINA UN EMPADRE 
@@ -88,11 +106,11 @@ class Medico_List(APIView):
     #permission_classes = [IsAuthenticated]
     def get (self , request ):
         try:
-            queryset = Medico_Especialista.objects.all()
+            queryset = Medico_Especialista.objects.all().order_by("id")
             serializer = Medico_Serializers(queryset, many= True)
             return Response(data = serializer.data , status= status.HTTP_200_OK)
         except Exception as e: 
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+            return Response( status = status.HTTP_400_BAD_REQUEST)
 
 
 #TRAE TACTO POR ID
@@ -101,10 +119,10 @@ class Medico_ListById(APIView):
     def get (self , request , id=0):
         try:
             if (id > 0): 
-                queryset = list(Medico_Especialista.objects.filter(id=id).values())
+                queryset = Medico_Especialista.objects.filter(id=id)
                 if len(queryset) > 0: 
-                    cows = queryset[0]
-                    return Response(cows , status= status.HTTP_200_OK)
+                    serializer = Medico_Serializers(queryset , many=True)
+                    return Response(data=serializer.data, status= status.HTTP_200_OK)
                 else:
                     return Response(status = status.HTTP_404_NOT_FOUND)
         except Exception as e:
@@ -116,12 +134,12 @@ class Medico_Create(APIView):
     @method_decorator(csrf_exempt)
     def post (self, request):
         try:
-            serializer = Medico_Serializers(data = request.data)
+            serializer = Medico_Create_serializer(data = request.data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data , status=status.HTTP_201_CREATED)
         except Exception as e:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+            return Response( status = status.HTTP_400_BAD_REQUEST)
     
 
 #ACTUALIZA UN MEDICO
@@ -137,7 +155,7 @@ class Medico_Update(APIView):
                 return Response(serializer.data , status= status.HTTP_200_OK)
 
         except Exception as e:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+            return Response( status = status.HTTP_400_BAD_REQUEST)
     
 
 #ELIMINA UN MEDICO 

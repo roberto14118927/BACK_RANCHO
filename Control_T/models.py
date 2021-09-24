@@ -1,5 +1,5 @@
 from django.db import models
-from Control_E.models import Control_Empadre
+from Control_Em.models import Control_Empadre
 
 
 class Inventario_termo(models.Model):

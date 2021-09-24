@@ -46,9 +46,9 @@ INSTALLED_APPS = [
     'Social',
     'Control_G',
     'Control_P',
-    'Control_E',
     'Control_M',
     'Control_T',
+    'Control_Em',
 ]
 
 #Para agregar quitar los permisos de autenticación, comentar los primeros 3.
