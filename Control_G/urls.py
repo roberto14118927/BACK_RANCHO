@@ -14,6 +14,6 @@ urlpatterns = [
     path(r'create_raza/' , views.RazaCreate.as_view() , name="Create raza"),
     path(r'list_razas/' , views.RazaList.as_view() , name="List raza"),
     path(r'list_id/<int:id>' , views.RazaListById.as_view() , name='List raza id'),
-    path(r'update/<int:id>' , views.RazaUpdate.as_view() , name='Update raza'),
-    path(r'delete/<int:id>' , views.RazaDelete.as_view() , name= 'Delete raza'),
+    path(r'update_raza/<int:id>' , views.RazaUpdate.as_view() , name='Update raza'),
+    path(r'delete_raza/<int:id>' , views.RazaDelete.as_view() , name= 'Delete raza'),
 ]
