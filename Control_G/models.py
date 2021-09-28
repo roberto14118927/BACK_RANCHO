@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.deletion import CASCADE
+from django.db.models.deletion import CASCADE, SET_NULL
 
 
 class Raza(models.Model):
@@ -16,7 +16,8 @@ class Ganado(models.Model):
 
     nombre = models.CharField(max_length=254)
     sexo = models.CharField(max_length=254)
-    id_raza = models.ForeignKey(Raza, on_delete= models.CASCADE , related_name="id_raza")       #foreing Key 
+    #id_raza = models.ForeignKey(Raza, on_delete= models.CASCADE , related_name="id_raza")       #foreing Key 
+    id_raza = models.ForeignKey(Raza, on_delete= SET_NULL,related_name="id_raza", null=True)  
     num_economico = models.CharField(max_length=254 , null=True , blank=True)
     num_registro = models.CharField(max_length=254 , null=True , blank=True)
     num_siniga = models.CharField(max_length=254 , null=True , blank=True)

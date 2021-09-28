@@ -1,5 +1,6 @@
 from django.db import models
 from django.db import models
+from django.db.models.deletion import SET_NULL
 from django.db.models.fields import CharField
 from Control_G.models import Ganado
 
@@ -22,8 +23,11 @@ class Control_Empadre(models.Model):
     mes_prob_parto= models.IntegerField()
     anio_prob_parto = models.IntegerField()
 
-    id_toro = models.ForeignKey(Ganado , on_delete=models.CASCADE , related_name='id_vaca')
-    vaca_id = models.ForeignKey(Ganado , on_delete=models.CASCADE , related_name='id_toro')
+    #id_toro = models.ForeignKey(Ganado , on_delete=models.CASCADE , related_name='id_vaca')
+    #vaca_id = models.ForeignKey(Ganado , on_delete=models.CASCADE , related_name='id_toro')
+
+    id_toro = models.ForeignKey(Ganado ,on_delete= SET_NULL, related_name='id_vaca' , null=True)
+    vaca_id = models.ForeignKey(Ganado , on_delete= SET_NULL , related_name='id_toro', null=True)
 
 
     def __str__(self):
