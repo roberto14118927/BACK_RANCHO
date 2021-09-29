@@ -18,21 +18,19 @@ class Ganado(models.Model):
     sexo = models.CharField(max_length=254)
     #id_raza = models.ForeignKey(Raza, on_delete= models.CASCADE , related_name="id_raza")       #foreing Key 
     id_raza = models.ForeignKey(Raza, on_delete= SET_NULL,related_name="id_raza", null=True)  
+   
     num_economico = models.CharField(max_length=254 , null=True , blank=True)
     num_registro = models.CharField(max_length=254 , null=True , blank=True)
     num_siniga = models.CharField(max_length=254 , null=True , blank=True)
+    
     comentarios = models.CharField(max_length=254, null=True , blank=True)
 
-    dia_nacimiento = models.IntegerField()
-    mes_nacimiento = models.IntegerField()
-    anio_nacimiento = models.IntegerField()
+    fecha_nacimiento = models.DateField()
 
     padre = models.CharField(max_length=254)
     madre = models.CharField(max_length=254)
 
-    dia_entrada_hato = models.IntegerField()
-    mes_entrada_hato = models.IntegerField()
-    anio_entrada_hato = models.IntegerField()
+    fecha_entrada_hato = models.DateField()
 
     estado = models.CharField(max_length=254)
     condicion_estadia = models.CharField(max_length=254)

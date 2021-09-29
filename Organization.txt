@@ -39,4 +39,11 @@ Carpetas:
             * Vacas asociadas
             * Enfermedades
 
-    
+****************************** SECOND SPRINT *********************************************
+Control de peso por id de ganado.
+
+Historial de alimentos.
+Historial de insumos.
+Historial de materiales. 
+
+*revisar metodos para subir imagenes. 

@@ -9,19 +9,13 @@ from Control_G.models import Ganado
 
 class Control_Empadre(models.Model):
     
-    dia_servicio = models.IntegerField()
-    mes_servicio = models.IntegerField()
-    anio_servicio = models.IntegerField()
-
+    fecha_servicio = models.DateField()
     tipo_servicio = models.CharField(max_length=254)
-    dia_gestacion = models.IntegerField()
-    mes_gestacion = models.IntegerField()
-    anio_gestacion = models.IntegerField()
-
+    
+    fecha_gestacion = models.DateField()
     estado_servicio = models.CharField(max_length=254)
-    dia_prob_parto = models.IntegerField()
-    mes_prob_parto= models.IntegerField()
-    anio_prob_parto = models.IntegerField()
+    
+    fecha_parto = models.DateField()
 
     #id_toro = models.ForeignKey(Ganado , on_delete=models.CASCADE , related_name='id_vaca')
     #vaca_id = models.ForeignKey(Ganado , on_delete=models.CASCADE , related_name='id_toro')

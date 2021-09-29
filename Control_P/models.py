@@ -7,9 +7,7 @@ from Control_G.models import Ganado
 class Peso_Ganando(models.Model):
 
     id_ganado = models.ForeignKey(Ganado , on_delete= models.CASCADE)  #foreing Key
-    dia_peso = models.IntegerField()
-    mes_peso = models.IntegerField()
-    anio_peso = models.IntegerField()
+    fecha_peso = models.DateField()
 
     ganancia_peso_mensual_kilo = models.FloatField()
     ganancia_peso_mensual_porcentaje = models.FloatField()
@@ -31,9 +29,7 @@ class Enfermedades_Ganado(models.Model):
     numero_animales = models.IntegerField()
     porcentaje_infectado = models.FloatField()
 
-    dia_detectado = models.IntegerField()
-    mes_detectado = models.IntegerField()
-    anio_detectado = models.IntegerField()
+    fecha_detectado = models.DateField()
 
     vacas = models.IntegerField()
     toros = models.IntegerField()
