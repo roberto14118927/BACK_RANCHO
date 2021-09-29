@@ -1,7 +1,6 @@
 from django.db import models
 from django.db import models
 from django.db.models.deletion import SET_NULL
-from django.db.models.fields import CharField
 from Control_G.models import Ganado
 
 
@@ -9,13 +8,13 @@ from Control_G.models import Ganado
 
 class Control_Empadre(models.Model):
     
-    fecha_servicio = models.DateField()
+    fecha_servicio = models.CharField(max_length=10)
     tipo_servicio = models.CharField(max_length=254)
     
-    fecha_gestacion = models.DateField()
+    fecha_gestacion =  models.CharField(max_length=10)
     estado_servicio = models.CharField(max_length=254)
     
-    fecha_parto = models.DateField()
+    fecha_parto = models.CharField(max_length=10)
 
     #id_toro = models.ForeignKey(Ganado , on_delete=models.CASCADE , related_name='id_vaca')
     #vaca_id = models.ForeignKey(Ganado , on_delete=models.CASCADE , related_name='id_toro')

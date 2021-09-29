@@ -25,12 +25,12 @@ class Ganado(models.Model):
     
     comentarios = models.CharField(max_length=254, null=True , blank=True)
 
-    fecha_nacimiento = models.DateField()
+    fecha_nacimiento =  models.CharField(max_length=10)
 
     padre = models.CharField(max_length=254)
     madre = models.CharField(max_length=254)
 
-    fecha_entrada_hato = models.DateField()
+    fecha_entrada_hato = models.CharField(max_length=10)
 
     estado = models.CharField(max_length=254)
     condicion_estadia = models.CharField(max_length=254)

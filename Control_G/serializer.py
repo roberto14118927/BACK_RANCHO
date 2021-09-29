@@ -14,8 +14,8 @@ class RazaSerializers(serializers.ModelSerializer):
 class GanadoSerializers(serializers.ModelSerializer):
     class Meta:
         model = Ganado
-        fields = ['id', 'nombre', 'sexo','id_raza', 'num_economico','num_registro' ,'num_siniga' ,'comentarios' ,'dia_nacimiento'  
-        ,'mes_nacimiento' ,'anio_nacimiento','padre'  ,'madre'  ,'dia_entrada_hato' ,'mes_entrada_hato' ,'anio_entrada_hato' ,
+        fields = ['id', 'nombre', 'sexo','id_raza', 'num_economico','num_registro' ,'num_siniga' ,'comentarios' ,
+        'fecha_nacimiento','padre'  ,'madre'  ,'fecha_entrada_hato' ,
         'estado' ,'condicion_estadia']
         depth = 10
 
