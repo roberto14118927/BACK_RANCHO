@@ -127,14 +127,10 @@ class GanadoCreate(APIView):
             num_registro = cow_data ["num_registro"],
             num_siniga =  cow_data["num_siniga"],
             comentarios = cow_data["comentarios"],
-            dia_nacimiento = cow_data["dia_nacimiento"],
-            mes_nacimiento = cow_data["mes_nacimiento"],
-            anio_nacimiento = cow_data["anio_nacimiento"],
+            fecha_nacimiento = cow_data["fecha_nacimiento"],
             padre = cow_data ["padre"],
             madre = cow_data["madre"] ,
-            dia_entrada_hato  = cow_data ["dia_entrada_hato"],
-            mes_entrada_hato  = cow_data["mes_entrada_hato"],
-            anio_entrada_hato  = cow_data["anio_entrada_hato"],
+            fecha_entrada_hato  = cow_data ["fecha_entrada_hato"],
             estado  = cow_data ["estado"],
             condicion_estadia  = cow_data ["condicion_estadia"]
         )

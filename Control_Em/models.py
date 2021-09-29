@@ -8,13 +8,13 @@ from Control_G.models import Ganado
 
 class Control_Empadre(models.Model):
     
-    fecha_servicio = models.CharField(max_length=10)
+    fecha_servicio = models.CharField(max_length=10 , null=True)
     tipo_servicio = models.CharField(max_length=254)
     
-    fecha_gestacion =  models.CharField(max_length=10)
+    fecha_gestacion =  models.CharField(max_length=10, null=True)
     estado_servicio = models.CharField(max_length=254)
     
-    fecha_parto = models.CharField(max_length=10)
+    fecha_parto = models.CharField(max_length=10 , null=True)
 
     #id_toro = models.ForeignKey(Ganado , on_delete=models.CASCADE , related_name='id_vaca')
     #vaca_id = models.ForeignKey(Ganado , on_delete=models.CASCADE , related_name='id_toro')

@@ -58,9 +58,7 @@ class Peso_Create(APIView):
 
         new_cow = Peso_Ganando.objects.create(
             id_ganado = cow_data["id_ganado"],
-            dia_peso = cow_data["dia_peso"],
-            mes_peso = cow_data["mes_peso"],
-            anio_peso = cow_data["anio_peso"],
+            fecha_peso = cow_data["fecha_peso"],
             ganancia_peso_mensual_kilo = cow_data["ganancia_peso_mensual_kilo"],
             ganancia_peso_mensual_porcentaje = cow_data["ganancia_peso_mensual_porcentaje"],
             estado_vaca = cow_data["estado_vaca"],

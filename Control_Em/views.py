@@ -58,17 +58,11 @@ class Empadre_Create(APIView):
         cow_data["vaca_id"] = topic_v
 
         new_cow = Control_Empadre.objects.create(
-            dia_servicio = cow_data["dia_servicio"],
-            mes_servicio = cow_data["mes_servicio"],
-            anio_servicio = cow_data["anio_servicio"],
+            fecha_servicio = cow_data["fecha_servicio"],
             tipo_servicio = cow_data["tipo_servicio"],
-            dia_gestacion = cow_data["dia_gestacion"],
-            mes_gestacion = cow_data["mes_gestacion"],
-            anio_gestacion = cow_data["anio_gestacion"],
+            fecha_gestacion = cow_data["fecha_gestacion"],
             estado_servicio = cow_data["estado_servicio"],
-            dia_prob_parto = cow_data["dia_prob_parto"],
-            mes_prob_parto=  cow_data["mes_prob_parto"],
-            anio_prob_parto = cow_data["anio_prob_parto"],
+            fecha_parto = cow_data["fecha_parto"],
             id_toro = cow_data["id_toro"],
             vaca_id = cow_data["vaca_id"]
             )
