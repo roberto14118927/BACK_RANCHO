@@ -6,7 +6,7 @@ from Control_P.models import Peso_Ganando , Vacas_asociadas , Enfermedades_Ganad
 class Peso_Serializer(serializers.ModelSerializer):
     class Meta: 
         model = Peso_Ganando
-        fields = ['id' , 'fecha_peso' , 'ganancia_peso_mensual_kilo' ,
+        fields = ['id' , 'id_ganado', 'fecha_peso' , 'ganancia_peso_mensual_kilo' ,
                  'ganancia_peso_mensual_porcentaje' , 'estado_vaca',
                  'peso']
         depth = 10

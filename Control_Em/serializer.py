@@ -8,7 +8,7 @@ class Empadre_Serializers(serializers.ModelSerializer):
         model = Control_Empadre
         fields =  ['id','fecha_servicio' ,'tipo_servicio' ,'fecha_gestacion', 
                     'estado_servicio', 'fecha_parto' ,'id_toro' ,'vaca_id' ]
-        depth = 1
+        depth = 10
 
 class Tacto_Serializers(serializers.ModelSerializer):
     class Meta:
