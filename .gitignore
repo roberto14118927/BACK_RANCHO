@@ -4,3 +4,5 @@ db.sqlite3
 Pipfile
 __pychache__/
 migrations/
+
+.txt

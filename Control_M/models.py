@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.deletion import SET_NULL
 from Control_Em.models import Control_Empadre
 
 class Medico_Especialista (models.Model):
@@ -13,8 +14,8 @@ class Medico_Especialista (models.Model):
 
 class Empadre_medico(models.Model):
 
-    id_empadre = models.ForeignKey(Control_Empadre , on_delete= models.CASCADE)
-    id_medico = models.ForeignKey(Medico_Especialista , on_delete= models.CASCADE)
+    id_empadre = models.ForeignKey(Control_Empadre , on_delete= SET_NULL , null=True)
+    id_medico = models.ForeignKey(Medico_Especialista , on_delete= SET_NULL , null=True)
 
     def __str__(self):
         return self.id_empadre

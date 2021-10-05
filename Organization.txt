@@ -40,10 +40,18 @@ Carpetas:
             * Enfermedades
 
 ****************************** SECOND SPRINT *********************************************
-Control de peso por id de ganado.
+    Control_A:
+        Contiene toda la información del inventariado de los alimentos. 
+            *Inventario de alimentos.
+            
+    Control_IM:
+        Contiene toda la información del inventariado de los insumos medicos. 
+            *Inventario de insumos medicos.
 
-Historial de alimentos.
-Historial de insumos.
-Historial de materiales. 
+    Control_Mat:
+        Contiene toda la información del inventariado de los materiales. 
+            *Inventario de materiales.
+
+    
 
 *revisar metodos para subir imagenes. 

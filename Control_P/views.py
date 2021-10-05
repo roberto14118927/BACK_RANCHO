@@ -200,7 +200,23 @@ class Asociaciones_List_By_Id(APIView):
                     return Response(status = status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response(status = status.HTTP_404_NOT_FOUND)
-                
+
+
+#TRAE LAS ASOCIACIONES POR ID
+class Asociaciones_List_By_enfermedad(APIView):
+    #permission_classes =[IsAuthenticated]
+    def get (self , request , id=0):
+        try:
+            if (id > 0): 
+                queryset = Vacas_asociadas.objects.all().filter(id_enfermedad=id)
+                if len(queryset) > 0: 
+                    serializer = Vacas_Serializer(queryset , many=True)
+                    return Response(data=serializer.data , status= status.HTTP_200_OK)
+                else:
+                    return Response(status = status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response(status = status.HTTP_404_NOT_FOUND)
+
 
 #CREA NUEVA ASOCIACIÓN
 class Asociacion_Create(APIView):
