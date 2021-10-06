@@ -2,7 +2,11 @@
 .lock
 db.sqlite3
 Pipfile
-__pychache__/
-migrations/
 
-.txt
+__pychache__
+migrations
+
+
+#Editores
+*.txt
+*.vscode

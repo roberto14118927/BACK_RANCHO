@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response 
 from rest_framework import status
 from django.utils.decorators import method_decorator
+from Control_G.models import Ganado
 
 from Control_T.serializer import Termo_Create_Serializers, Termo_Serializers , Empadre_termo_Serializers
 from Control_T.models import Inventario_termo , Empadre_Termo
@@ -131,14 +132,29 @@ class Termo_ListById(APIView):
 class Termo_Create(APIView):
     @method_decorator(csrf_exempt)
     def post (self, request):
+        id_g = request.data["id_ganado"] 
         try:
-            serializer = Termo_Create_Serializers(data = request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data , status=status.HTTP_201_CREATED)
-        except Exception as e:
-            return Response( status = status.HTTP_400_BAD_REQUEST)
-    
+            topic_g = Ganado.objects.get(id=id_g)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        cow_data = request.data
+        cow_data["id_ganado"] = topic_g
+
+        new_cow = Inventario_termo.objects.create(
+            num_canastilla = cow_data["num_canastilla"],
+            id_ganado = cow_data["id_ganado"],
+            raza = cow_data["raza"],
+            descripcion = cow_data["descripcion"],
+            cantidad = cow_data["cantidad"],
+            comentario = cow_data["comentario"],
+            num_termo = cow_data["num_termo"]
+        )
+
+        new_cow.save()
+        serializer = Termo_Serializers(new_cow)
+
+        return Response(serializer.data , status= status.HTTP_201_CREATED)
     
 
 #ACTUALIZA UN REGISTRO EN TERMO
