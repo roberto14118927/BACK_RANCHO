@@ -34,6 +34,7 @@ class Tacto (models.Model):
     detalle = models.CharField(max_length=254)
     hallazgo = models.CharField(max_length=254)
     id_empadre = models.ForeignKey(Control_Empadre, on_delete= SET_NULL , null=True)
+    fecha = models.CharField(max_length=10 , null=True)
 
     def __str__(self):
         return self.datalle

@@ -131,7 +131,23 @@ class Tacto_ListById(APIView):
                     return Response(status = status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response(status = status.HTTP_404_NOT_FOUND)
-                
+
+
+#TRAE LAS ASOCIACIONES POR ID
+class Tacto_by_id_empadre(APIView):
+    #permission_classes =[IsAuthenticated]
+    def get (self , request , id=0):
+        try:
+            if (id > 0): 
+                queryset = Tacto.objects.filter(id_empadre=id)
+                if len(queryset) > 0: 
+                    serializer = Tacto_Serializers(queryset , many=True)
+                    return Response(data=serializer.data , status= status.HTTP_200_OK)
+                else:
+                    return Response(status = status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response(status = status.HTTP_404_NOT_FOUND)
+
 
 #CREA UN NUEVO TACTO
 class Tacto_Create(APIView):
@@ -151,7 +167,8 @@ class Tacto_Create(APIView):
         new_cow = Tacto.objects.create(
             detalle = cow_data["detalle"],
             hallazgo = cow_data["hallazgo"],
-            id_empadre = cow_data["id_empadre"]
+            id_empadre = cow_data["id_empadre"],
+            fecha = cow_data["fecha"]
         )
 
         new_cow.save()

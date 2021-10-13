@@ -14,6 +14,7 @@ urlpatterns = [
     path(r'create_tacto/', views.Tacto_Create.as_view() , name='Create new tacto'),
     path(r'tacto_list/' , views.Tacto_List.as_view() , name ='All tacto'),
     path(r'tacto_id/<int:id>' , views.Tacto_ListById.as_view(), name='tacto by id'),
+    path(r'tacto_idempadre/<int:id>' , views.Tacto_by_id_empadre.as_view(), name='tacto by id'),
     path(r'update_tacto/<int:id>' , views.Tacto_Update.as_view() , name='Update tacto'),
     path(r'delete_tacto/<int:id>' , views.Tacto_Delete.as_view() , name= 'Delete tacto'),
 

@@ -13,5 +13,5 @@ class Empadre_Serializers(serializers.ModelSerializer):
 class Tacto_Serializers(serializers.ModelSerializer):
     class Meta:
         model = Tacto
-        fields = ['id', 'detalle' , 'hallazgo' , 'id_empadre']
+        fields = ['id', 'detalle' , 'hallazgo' , 'id_empadre' , 'fecha']
         depth = 10
