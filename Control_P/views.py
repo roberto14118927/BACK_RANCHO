@@ -32,7 +32,7 @@ class PesoList_By_Id(APIView):
     def get (self , request , id=0):
         try:
             if (id > 0): 
-                queryset = Peso_Ganando.objects.all().filter(id=id)
+                queryset = Peso_Ganando.objects.filter(id=id)
                 if len(queryset) > 0: 
                     serializer = Peso_Serializer(queryset, many= True)
                     return Response(data=serializer.data , status= status.HTTP_200_OK)
@@ -40,7 +40,23 @@ class PesoList_By_Id(APIView):
                     return Response(status = status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response(status = status.HTTP_404_NOT_FOUND)
-                
+
+
+#TRAE EL PESO DEL GANADO POR ID
+class PesoList_By_IdGanado(APIView):
+    #permission_classes =[IsAuthenticated]
+    def get (self , request , id=0):
+        try:
+            if (id > 0): 
+                queryset = Peso_Ganando.objects.filter(id_ganado=id)
+                if len(queryset) > 0: 
+                    serializer = Peso_Serializer(queryset, many= True)
+                    return Response(data=serializer.data , status= status.HTTP_200_OK)
+                else:
+                    return Response(status = status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response(status = status.HTTP_404_NOT_FOUND)
+
 
 #CREA UN NUEVO PESO DE GANADO
 class Peso_Create(APIView):
