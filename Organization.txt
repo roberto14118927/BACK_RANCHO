@@ -40,7 +40,7 @@ Carpetas:
             * Enfermedades
 
 ****************************** SECOND SPRINT *********************************************
-    Control_A:
+    Control_IA:
         Contiene toda la información del inventariado de los alimentos. 
             *Inventario de alimentos.
             
@@ -48,7 +48,7 @@ Carpetas:
         Contiene toda la información del inventariado de los insumos medicos. 
             *Inventario de insumos medicos.
 
-    Control_Mat:
+    Control_IMA:
         Contiene toda la información del inventariado de los materiales. 
             *Inventario de materiales.
 

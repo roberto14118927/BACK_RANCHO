@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'Control_M',
     'Control_T',
     'Control_Em',
+    'Control_IA',
+    'Control_IM',
+    'Control_IMA'
 ]
 
 #Para agregar quitar los permisos de autenticación, comentar los primeros 3.

@@ -3,10 +3,12 @@
 db.sqlite3
 Pipfile
 
-__pychache__
-migrations
+
+*/__pycache__
+*/migrations
 
 
 #Editores
-*.txt
-*.vscode
+.txt
+.vscode
+*.pyc

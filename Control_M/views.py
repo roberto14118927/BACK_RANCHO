@@ -42,7 +42,7 @@ class Empadre_ListById(APIView):
 
 #CREA UN NUEVO EMPADRE
 class Empadre_Create(APIView):
-    @method_decorator(csrf_exempt)
+    #@method_decorator(csrf_exempt)
     def post (self, request):
 
         id_t = request.data["id_medico"] 
