@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-kqs%pnac-lx%08o1!b@-^fk1k(f#0@4x^&k7fwa*czoe^aw-7#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['htpps://santabarbara-back.herokuapp.com', 'localhost' , '127.0.0.1']
 
 
@@ -87,6 +87,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOWED_ORIGINS  = [
      "http://localhost:8000" , 
      "http://localhost:8080" ,
+     "htpps://santabarbara-back.herokuapp.com",
 ]
 
 CORS_ALLOW_METHODS = (
@@ -143,27 +144,27 @@ WSGI_APPLICATION = 'StaBarbara.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd7enial93tg91n',
-        'USER': 'hcvvmbkwmvcbdc',
-        'PASSWORD': '464b8813b32220f39d166168e75667637a6d0043409c99e444fcb942ab61d999',
-        'HOST': 'ec2-54-210-226-209.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'Barbara',
-#         'USER': 'postgres',
-#         'PASSWORD': 'alexroque14',
-#         'HOST': 'localhost',
+#         'NAME': 'd7enial93tg91n',
+#         'USER': 'hcvvmbkwmvcbdc',
+#         'PASSWORD': '464b8813b32220f39d166168e75667637a6d0043409c99e444fcb942ab61d999',
+#         'HOST': 'ec2-54-210-226-209.compute-1.amazonaws.com',
 #         'PORT': '5432',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'Barbara',
+        'USER': 'postgres',
+        'PASSWORD': 'alexroque14',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
 
 # Password validation
@@ -191,6 +192,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'es-mx'
 TIME_ZONE = 'UTC'
 
+#Set default model user
+AUTH_USER_MODEL = 'Control_Usuario.User'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

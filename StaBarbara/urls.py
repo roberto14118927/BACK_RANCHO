@@ -26,6 +26,7 @@ urlpatterns = [
 
     #Control de usuarios
     path(r'api/medicos/', include('apps.Users.Control_Medicos.urls')),
+    path(r'usuario/', include("apps.Users.Control_Usuario.api.urls"))
     
     #Login
 ]
