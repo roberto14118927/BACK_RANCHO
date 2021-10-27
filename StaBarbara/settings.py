@@ -144,27 +144,27 @@ WSGI_APPLICATION = 'StaBarbara.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'd7enial93tg91n',
-#         'USER': 'hcvvmbkwmvcbdc',
-#         'PASSWORD': '464b8813b32220f39d166168e75667637a6d0043409c99e444fcb942ab61d999',
-#         'HOST': 'ec2-54-210-226-209.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Barbara',
-        'USER': 'postgres',
-        'PASSWORD': 'alexroque14',
-        'HOST': 'localhost',
+        'NAME': 'd7enial93tg91n',
+        'USER': 'hcvvmbkwmvcbdc',
+        'PASSWORD': '464b8813b32220f39d166168e75667637a6d0043409c99e444fcb942ab61d999',
+        'HOST': 'ec2-54-210-226-209.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'Barbara',
+#         'USER': 'postgres',
+#         'PASSWORD': 'alexroque14',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
