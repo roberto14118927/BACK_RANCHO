@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from django.contrib.auth.models import User
+from django.contrib.auth import login , logout 
 from rest_framework import routers
 from rest_framework_swagger.views import get_swagger_view
 
@@ -10,17 +11,21 @@ router = routers.DefaultRouter()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'api/user/', include('Social.urls')),
-    path(r'api/auth/', include('Login.urls')),
-    path(r'api/cows/' , include('Control_G.urls')),
-    path(r'api/peso/' , include('Control_P.urls')),
-    path(r'api/empadre/' , include('Control_Em.urls')),
-    path(r'api/termocrio/', include('Control_T.urls')),
-    path(r'api/medicos/', include('Control_M.urls')),
-    path(r'api/inv/' , include('Control_IA.urls')),
-    path(r'api/inv/' , include('Control_IM.urls')),
-    path(r'api/inv/' , include('Control_IMA.urls')),
-    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    #re_path(r'^',include(router.urls)),
     path('documentacion', schema_view),
+
+    #control de ganado
+    path(r'api/cows/' , include('apps.Ganado.Control_Ganado.urls')),
+    path(r'api/peso/' , include('apps.Ganado.Control_Peso.urls')),
+    path(r'api/empadre/' , include('apps.Ganado.Control_Empadre.urls')),
+
+    #Control de inventarios
+    path(r'api/termocrio/', include('apps.Inventarios.Control_Termo.urls')),
+    path(r'api/inv/' , include('apps.Inventarios.Control_IAlimentos.urls')),
+    path(r'api/inv/' , include('apps.Inventarios.Control_IMedicos.urls')),
+    path(r'api/inv/' , include('apps.Inventarios.Control_IMateriales.urls')),
+
+    #Control de usuarios
+    path(r'api/medicos/', include('apps.Users.Control_Medicos.urls')),
+    
+    #Login
 ]

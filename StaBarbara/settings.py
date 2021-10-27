@@ -26,32 +26,42 @@ SECRET_KEY = 'django-insecure-kqs%pnac-lx%08o1!b@-^fk1k(f#0@4x^&k7fwa*czoe^aw-7#
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 ALLOWED_HOSTS = ['htpps://santabarbara-back.herokuapp.com', 'localhost' , '127.0.0.1']
 
+
 # Application definition
-INSTALLED_APPS = [
+BASE_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+LOCAL_APPS = [ 
+    'apps.Ganado.Control_Ganado',
+    'apps.Ganado.Control_Peso',
+    'apps.Ganado.Control_Empadre',
+
+    'apps.Inventarios.Control_Termo',
+    'apps.Inventarios.Control_IAlimentos',
+    'apps.Inventarios.Control_IMedicos',
+    'apps.Inventarios.Control_IMateriales',
+
+    'apps.Users.Control_Medicos',
+    'apps.Users.Control_Usuario',
+]
+
+THIRD_APPS = [
     'rest_framework_swagger',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-
-    'Social',
-    'Control_G',
-    'Control_P',
-    'Control_M',
-    'Control_T',
-    'Control_Em',
-    'Control_IA',
-    'Control_IM',
-    'Control_IMA'
 ]
+
+
+INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 
 #Para agregar quitar los permisos de autenticación, comentar los primeros 3.
 #De igual manera, se debe quitar de las vistas los permisos de autenticación. 
@@ -60,7 +70,6 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.IsAuthenticated',),
     # 'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.TokenAuthentication',
     # 'rest_framework.authentication.SessionAuthentication',),
-    
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100,
      'DEFAULT_PARSER_CLASSES': [
@@ -137,13 +146,25 @@ WSGI_APPLICATION = 'StaBarbara.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'damu60rgb1jcls',
-        'USER': 'luvzjjozaiqfxa',
-        'PASSWORD': '99b187544c5f5b2569ef762b7b9dedcee8dec09fed714437fe75b97d0c9aebdb',
-        'HOST': 'ec2-44-198-215-235.compute-1.amazonaws.com',
+        'NAME': 'd7enial93tg91n',
+        'USER': 'hcvvmbkwmvcbdc',
+        'PASSWORD': '464b8813b32220f39d166168e75667637a6d0043409c99e444fcb942ab61d999',
+        'HOST': 'ec2-54-210-226-209.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'Barbara',
+#         'USER': 'postgres',
+#         'PASSWORD': 'alexroque14',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
