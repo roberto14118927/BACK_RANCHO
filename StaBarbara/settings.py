@@ -45,7 +45,7 @@ LOCAL_APPS = [
     'apps.Ganado.Control_Peso',
     'apps.Ganado.Control_Empadre',
 
-    'apps.Inventarios.Control_Termo',
+    'apps.Inventarios.Control_Termocrio',
     'apps.Inventarios.Control_IAlimentos',
     'apps.Inventarios.Control_IMedicos',
     'apps.Inventarios.Control_IMateriales',

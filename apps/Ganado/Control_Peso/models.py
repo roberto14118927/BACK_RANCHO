@@ -15,8 +15,8 @@ class Peso_Ganando(models.Model):
     peso = models.FloatField()
 
     def __str__(self):
-        return self.fecha_peso
-
+        return str(self.id)
+        
     class Meta: 
         db_table = 'Peso'
 

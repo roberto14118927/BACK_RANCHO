@@ -15,7 +15,7 @@ class Inventario_termo(models.Model):
     num_termo = models.IntegerField()
 
     def __str__(self):
-        return self.num_termo
+        return str(self.id)
 
     class Meta: 
         db_table = 'Inventario_Termo'
@@ -27,7 +27,7 @@ class Empadre_Termo(models.Model):
     id_inv_termo = models.ForeignKey(Inventario_termo , on_delete= SET_NULL,null=True)
 
     def __str__(self):
-        return self.id_empadre
+        return str(self.id_empadre)
 
     class Meta: 
         db_table = 'Empadre_Termo'

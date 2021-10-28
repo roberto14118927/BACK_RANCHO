@@ -24,7 +24,7 @@ class Control_Empadre(models.Model):
 
 
     def __str__(self):
-        return self.tipo_servicio
+        return str(self.id)
 
     class Meta: 
         db_table = 'Control_empadre'
@@ -37,7 +37,7 @@ class Tacto (models.Model):
     fecha = models.CharField(max_length=10 , null=True)
 
     def __str__(self):
-        return self.datalle
+        return str(self.id)
 
     class Meta: 
         db_table = 'Tacto'
