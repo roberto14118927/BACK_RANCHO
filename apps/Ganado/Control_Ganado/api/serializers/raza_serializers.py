@@ -5,7 +5,7 @@ from rest_framework import fields, serializers
 class RazaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Raza
-        exclude = ['state']
+        fields = '__all__'
     
     def to_representation(self, instance):
         return {

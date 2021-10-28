@@ -5,4 +5,4 @@ class GeneralListApiView(generics.ListAPIView):
 
     def get_queryset(self):
         model = self.get_serializer().Meta.model
-        return model.objects.all().filter(state = True).order_by("id")
+        return model.objects.all().filter().order_by("id")

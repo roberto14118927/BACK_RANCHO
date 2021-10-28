@@ -4,7 +4,6 @@ from django.db.models.deletion import CASCADE, SET_NULL
 
 class Raza(models.Model):
     raza = models.CharField(max_length=254 , unique=True)
-    state = models.BooleanField(default=True)
 
     def __str__(self):
         return self.raza 
@@ -32,7 +31,6 @@ class Ganado(models.Model):
     fecha_entrada_hato = models.CharField(max_length=10, null=True)
     estado = models.CharField(max_length=254)
     condicion_estadia = models.CharField(max_length=254)
-    state = models.BooleanField(default=True)
   
 
     def __str__(self):

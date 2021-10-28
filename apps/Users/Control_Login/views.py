@@ -50,6 +50,7 @@ class Login(ObtainAuthToken):
 
         return Response({'message': 'Login response.'} , status= status.HTTP_200_OK)
 
+
 class Logout(APIView):
     #El front deberá enviar el token para poder hacer el logout.
 

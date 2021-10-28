@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import fields, serializers
 from apps.Users.Control_Usuario.models import User
 
 class UserSerializer(serializers.ModelSerializer):
@@ -21,6 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
+        fields = '__all__'
 
     def to_representation(self, instance):
         return{

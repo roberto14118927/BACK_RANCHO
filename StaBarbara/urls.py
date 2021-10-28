@@ -18,7 +18,7 @@ urlpatterns = [
     path('logout/', Logout.as_view()),
     path('refresh-token/' , UserToken.as_view()),
 
-    path('usuario/', include("apps.Users.Control_Usuario.api.urls")),
+    path('usuario/', include("apps.Users.Control_Usuario.api.routers")),
     path('api/' , include('apps.Ganado.Control_Ganado.api.routers')),
 ]
 

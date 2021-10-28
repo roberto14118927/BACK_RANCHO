@@ -7,15 +7,15 @@ from apps.Ganado.Control_Ganado.models import Ganado
 from apps.Users.Control_Login.api.authentication_mixed import Authentication
 from apps.Ganado.Control_Ganado.api.serializers.ganado_serializers import GanadoSerializer , GanadoListSerializer
 
-
-class GanadoViewSet(Authentication, viewsets.ModelViewSet):
+#Agregar el Authentication como primer parametro.
+class GanadoViewSet(viewsets.ModelViewSet):
     serializer_class = GanadoSerializer
-    queryset =  GanadoSerializer.Meta.model.objects.filter(state=True)
+    queryset =  GanadoSerializer.Meta.model.objects.filter()
   
     def get_queryset(self , pk = None):
         if pk is None:
-            return GanadoListSerializer().Meta.model.objects.filter(state = True)
-        return GanadoListSerializer().Meta.model.objects.filter(state = True).first()
+            return GanadoListSerializer().Meta.model.objects.filter()
+        return GanadoListSerializer().Meta.model.objects.filter().first()
 
     def create(self, request):
         serializer = self.serializer_class(data = request.data)
@@ -40,8 +40,7 @@ class GanadoViewSet(Authentication, viewsets.ModelViewSet):
     def delete(self, request ,  pk=None):
         cow = self.get_queryset().filter(id=pk).first()
         if cow:
-            cow.state = False
-            cow.save()
+            cow.delete()
             return Response({'message': 'Eliminado'} , status= status.HTTP_200_OK)
         return Response(status= status.HTTP_400_BAD_REQUEST)
 
