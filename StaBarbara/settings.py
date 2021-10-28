@@ -52,11 +52,12 @@ LOCAL_APPS = [
 
     'apps.Users.Control_Medicos',
     'apps.Users.Control_Usuario',
+    'apps.Users.Control_Login',
 ]
 
 THIRD_APPS = [
-    'rest_framework_swagger',
     'rest_framework',
+    'rest_framework_swagger',
     'rest_framework.authtoken',
     'corsheaders',
 ]
@@ -68,18 +69,27 @@ INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 #De igual manera, se debe quitar de las vistas los permisos de autenticación. 
 
 REST_FRAMEWORK = {
-    # 'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.IsAuthenticated',),
-    # 'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.TokenAuthentication',
-    # 'rest_framework.authentication.SessionAuthentication',),
+    #'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.IsAuthenticated',),
+    #'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.TokenAuthentication'),
+    #'rest_framework.authentication.SessionAuthentication',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100,
-     'DEFAULT_PARSER_CLASSES': [
+    'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.FormParser',
         'rest_framework.parsers.MultiPartParser',
         'rest_framework.parsers.JSONParser',
         #'rest_framework.authentication.TokenAuthentication',
     ],
 }
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     )
+# }
 
 
 #Si aun no te funciona, cambia el valor por True. 
@@ -109,6 +119,11 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken",
     "x-requested-with",
 ]
+
+
+#El token expira en 15 minutos
+
+TOKEN_EXPIRED_AFTER_SECONDS = 900
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

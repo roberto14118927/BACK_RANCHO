@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-from django.contrib.auth.models import User
-from django.contrib.auth import login , logout 
 from rest_framework import routers
 from rest_framework_swagger.views import get_swagger_view
+
+from apps.Users.Control_Login.views import Login , Logout , UserToken
 
 schema_view = get_swagger_view(title='Pastebin API')
 router = routers.DefaultRouter()
@@ -14,8 +14,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('documentacion', schema_view),
 
+    path('login/' , Login.as_view()),
+    path('logout/', Logout.as_view()),
+    path('refresh-token/' , UserToken.as_view()),
+
     path('usuario/', include("apps.Users.Control_Usuario.api.urls")),
-    path('api/' , include('apps.Ganado.Control_Ganado.api.routers'))
+    path('api/' , include('apps.Ganado.Control_Ganado.api.routers')),
 ]
 
 

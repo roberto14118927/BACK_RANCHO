@@ -1,14 +1,14 @@
 from rest_framework.response import Response
-from rest_framework import generics
 from rest_framework import status
 from rest_framework import viewsets
 
-from apps.base.api import GeneralListApiView
+
 from apps.Ganado.Control_Ganado.models import Ganado
+from apps.Users.Control_Login.api.authentication_mixed import Authentication
 from apps.Ganado.Control_Ganado.api.serializers.ganado_serializers import GanadoSerializer , GanadoListSerializer
 
 
-class GanadoViewSet(viewsets.ModelViewSet):
+class GanadoViewSet(Authentication, viewsets.ModelViewSet):
     serializer_class = GanadoSerializer
     queryset =  GanadoSerializer.Meta.model.objects.filter(state=True)
   
