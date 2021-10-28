@@ -20,6 +20,9 @@ urlpatterns = [
 
     path('usuario/', include("apps.Users.Control_Usuario.api.routers")),
     path('api/' , include('apps.Ganado.Control_Ganado.api.routers')),
+    path('api/' , include('apps.Ganado.Control_Peso.api.routers')),
+    path('api/' , include('apps.Ganado.Control_Peso.api.urls'))
+
 ]
 
 

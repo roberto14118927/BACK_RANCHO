@@ -15,7 +15,7 @@ class Peso_Ganando(models.Model):
     peso = models.FloatField()
 
     def __str__(self):
-        return self.peso
+        return self.fecha_peso
 
     class Meta: 
         db_table = 'Peso'
@@ -44,7 +44,7 @@ class Enfermedades_Ganado(models.Model):
 #Modelo para las vacas asociadas a las enfermedades.
 class Vacas_asociadas(models.Model):
 
-    id_enfermedad = models.ForeignKey(Enfermedades_Ganado , on_delete= models.CASCADE)
+    id_enfermedad = models.ForeignKey(Enfermedades_Ganado , on_delete= models.CASCADE )
     id_ganado = models.ForeignKey(Ganado , on_delete= models.CASCADE)
     
     class Meta: 
