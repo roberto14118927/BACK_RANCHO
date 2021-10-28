@@ -4,6 +4,7 @@ from rest_framework import status , viewsets
 from apps.Users.Control_Login.api.authentication_mixed import Authentication
 from apps.Ganado.Control_Ganado.api.serializers.raza_serializers import RazaSerializer
 
+
 #agregar el Authentication como primer parametro.
 class RazaViewSet(Authentication , viewsets.ModelViewSet):
     serializer_class = RazaSerializer

@@ -7,15 +7,26 @@ from apps.Ganado.Control_Ganado.models import Ganado
 from apps.Users.Control_Login.api.authentication_mixed import Authentication
 from apps.Ganado.Control_Ganado.api.serializers.ganado_serializers import GanadoSerializer , GanadoListSerializer
 
-#Agregar el Authentication
-class GanadoViewSet(viewsets.ModelViewSet):
-    serializer_class = GanadoSerializer
-    queryset =  GanadoSerializer.Meta.model.objects.filter()
-  
+
+class GanadoListViewSet(Authentication,  viewsets.ModelViewSet):
+    serializer_class = GanadoListSerializer
+
     def get_queryset(self, pk=None):
         if pk is None:
             return self.get_serializer().Meta.model.objects.filter()
-        return GanadoListSerializer().Meta.model.objects.filter(id=pk).first()
+        return self.get_serializer().Meta.model.objects.filter(id=pk).first()
+
+    def list(self, request):
+        peso = self.get_serializer(self.get_queryset(), many=True)
+        return Response(peso.data, status=status.HTTP_200_OK)
+
+
+#Agregar el Authentication
+class GanadoViewSet(Authentication , viewsets.ModelViewSet):
+    serializer_class = GanadoSerializer
+    
+    def get_queryset(self, pk=None):
+        pass
 
     def create(self, request):
         serializer = self.serializer_class(data = request.data)
@@ -24,10 +35,9 @@ class GanadoViewSet(viewsets.ModelViewSet):
             return Response({'message':'Creado correctamente'} , status= status.HTTP_201_CREATED)
         return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
   
-    def list(self , request):
-        queryset = Ganado.objects.all().order_by("id")
-        serializer = GanadoListSerializer(queryset, many= True)
-        return Response(data = serializer.data , status= status.HTTP_200_OK)
+    def list(self, request):
+        ganado = self.get_serializer(self.get_queryset(), many=True)
+        return Response(ganado.data, status=status.HTTP_200_OK)
 
     def update(self, request, pk=None):
         if self.get_queryset(pk):
