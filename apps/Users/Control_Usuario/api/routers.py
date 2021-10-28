@@ -5,6 +5,6 @@ from apps.Users.Control_Usuario.api.viewsets import UsuarioCreateViewSet , Usuar
 
 router = DefaultRouter()
 router.register(r'users' , UsuarioViewSet , basename='Usuarios')
-router.register(r'create_user' , UsuarioCreateViewSet , basename='Create users')
+router.register(r'create-user' , UsuarioCreateViewSet , basename='Create users')
 
 urlpatterns = router.urls

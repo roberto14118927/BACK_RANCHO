@@ -1,57 +1,74 @@
-Carpetas:
-    StaBarbara : --> doing
-        Es donde se almacena toda la configuración del projecto de Django. 
-    
-    .env:       --> doing
-        Contiene la configuración del proyecto, base de datos, llave privada de projecto. 
-        No eliminar por que se utiliza para la configuración del archivo settings.py 
+Urls.
 
-    Login:      --> To do
-        Contiene toda la información sobre los inicios de sesión.
-    
-    Social :    --> Done
-        Contiene todos los metodos relacionados a la creación, edición, eliminación
-        y listado de todos los usuarios.
-    
-    Control_E:      --> Done
-        Contiene la información de los metodos para:
-            * Control de empadre
-            * Tacto
-    
-    Control_T:     --> Done
-        Contiene toda la información del termo criogenico.
-            * Empadre de termo
-            * Inventario de termo criogenico
-    
-    Control_M:      --> Done
-        Contiene toda la información de los medicos. 
-            * Empadre medico
-            * Medico especialista
-    
-    Control_G:      --> Done
-        Contiene toda la información relacionado al control del ganado.
-            * Ganado
-            * Raza
-    
-    Control_P:      --> Done
-        Contiene toda la información del control de peso del ganado.
-            * Peso 
-            * Vacas asociadas
-            * Enfermedades
+url = https://localhost:8000/
 
-****************************** SECOND SPRINT *********************************************
-    Control_IA:
-        Contiene toda la información del inventariado de los alimentos. 
-            *Inventario de alimentos.
-            
-    Control_IM:
-        Contiene toda la información del inventariado de los insumos medicos. 
-            *Inventario de insumos medicos.
+Usuarios: 
 
-    Control_IMA:
-        Contiene toda la información del inventariado de los materiales. 
-            *Inventario de materiales.
+    url + usuario/create-user/       --> Crear usuario
+    url + usuario/users/             --> Listar usuarios
+    url + usuario/users/<id>         --> Get id , update , delete
 
+control Empadre:
+
+    url + api/empadre/                                      --> crear empadre
+    url + api/empadre/<id>/                                 --> get id , update , delete
+    url + api/list-empadre/                                 --> listar empadres   
     
 
-*revisar metodos para subir imagenes. 
+    url + api/tacto/                                        --> crear tacto
+    url + api/tacto/<id>/                                   --> get id , update , delete
+    url + api/list-tacto/                                   --> listar tactos  
+    url + api/tacto/empadre-id/<int:id>                     --> get por id empadre
+
+
+control Ganado:
+
+    url + api/ganado/              --> crear ganado
+    url + api/ganado/<id>/         --> get id , update , delete
+    url + api/list-ganado/         --> listar ganado   
+
+    url + api/raza/                 --> crear raza , listar razas
+    url + api/raza/<id>/            --> get id , update , delete
+
+control Peso:
+
+    url + api/pesos/                                    --> crear peso
+    url + api/pesos/<id>/                               --> get id , update , delete
+    url + api/list-pesos/                               --> listar ganado   
+    url + api/peso/ganado-id/<id>                       --> get por id de ganado
+
+    url + api/enfermedades/                             --> crear ganado
+    url + api/enfermedades/<id>/                        --> get id , update , delete
+    url + api/list-enfermedades/                        --> listar ganado    
+
+    url + api/asociadas/                                --> crear ganado
+    url + api/asociadas/<id>/                           --> get id , update , delete
+    url + api/list-asociadas/                           --> listar ganado   
+    url + api/asociadas/enfermedad-id/<id>              --> get asociación por id de enfermedad
+
+Control Inventario alimentos: 
+
+    url + api/inventario-alimentos/                    --> crear alimentos
+    url + api/inventario-alimentos/<id>/               --> get id , update , delete
+
+Control Inventario materiales:
+
+    url + api/inventario-materiales/                    --> crear inventariado de materiales
+    url + api/inventario-materiales/<id>/               --> get id , update , delete
+
+Control Inventario insumos:
+
+    url + api/inventario-insumos/                      --> crear inventariado de insumos medico
+    url + api/inventario-insumos' /<id>/               --> get id , update , delete
+
+
+Control Inventario termocriogenico:
+
+    url + api/inventario-termo/                         --> crear inventariado de materiales
+    url + api/inventario-termo/<id>/                    --> get id , update , delete
+    url + api/inventario-list-termo/                    --> listar ganado    
+
+    url + api/empadre-termo/                            --> crear inventariado de materiales
+    url + api/empadre-termo/<id>/                       --> get id , update , delete
+    url + api/list-empadre-termo/                       --> listar ganado 
+

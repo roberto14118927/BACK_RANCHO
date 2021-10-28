@@ -14,6 +14,7 @@ class UserManager(BaseUserManager):
             is_superuser = is_superuser,
             **extra_fields
         )
+        
         user.set_password(password)
         user.save(using=self.db)
         return user
