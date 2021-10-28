@@ -23,8 +23,9 @@ class AsociadasViewSet(Authentication ,viewsets.ModelViewSet):
     serializer_class = AsociadasSerializer
 
     def get_queryset(self, pk=None):
-        pass
-
+        if pk is None:
+            return self.get_serializer().Meta.model.objects.filter()
+        return self.get_serializer().Meta.model.objects.filter(id=pk).first()
 
     def list(self, request):
         peso = self.get_serializer(self.get_queryset(), many=True)
