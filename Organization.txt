@@ -53,13 +53,13 @@ Control Inventario alimentos:
 
 Control Inventario materiales:
 
-    url + api/inventario-materiales/                    --> crear inventariado de materiales
+    url + api/inventario-materiales/                    --> get ,crear inventariado de materiales
     url + api/inventario-materiales/<id>/               --> get id , update , delete
 
 Control Inventario insumos:
 
-    url + api/inventario-insumos/                      --> crear inventariado de insumos medico
-    url + api/inventario-insumos' /<id>/               --> get id , update , delete
+    url + api/inventario-insumos/                      --> get , crear inventariado de insumos medico
+    url + api/inventario-insumos/<id>/                 --> get id , update , delete
 
 
 Control Inventario termocriogenico:
@@ -71,4 +71,15 @@ Control Inventario termocriogenico:
     url + api/empadre-termo/                            --> crear inventariado de materiales
     url + api/empadre-termo/<id>/                       --> get id , update , delete
     url + api/list-empadre-termo/                       --> listar ganado 
+
+
+Control Medicos Especialistas:
+
+    url + api/medicos/                                  --> crear medicos 
+    url + api/medicos/<id>/                             --> get id , update , delete
+
+    
+    url + api/empadre-medicos/                          --> crear inventariado de materiales
+    url + api/empadre-medicos/<id>/                     --> get id , update , delete
+    url + api/list-empadre-medicos/                     --> listar empadres medicos
 
