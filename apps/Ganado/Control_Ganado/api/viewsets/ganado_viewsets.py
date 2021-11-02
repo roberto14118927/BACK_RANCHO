@@ -8,7 +8,7 @@ from apps.Users.Control_Login.api.authentication_mixed import Authentication
 from apps.Ganado.Control_Ganado.api.serializers.ganado_serializers import GanadoSerializer , GanadoListSerializer
 
 
-class GanadoListViewSet(Authentication,  viewsets.ModelViewSet):
+class GanadoListViewSet(viewsets.ModelViewSet):
     serializer_class = GanadoListSerializer
 
     def get_queryset(self, pk=None):
@@ -22,7 +22,7 @@ class GanadoListViewSet(Authentication,  viewsets.ModelViewSet):
 
 
 #Agregar el Authentication
-class GanadoViewSet(Authentication , viewsets.ModelViewSet):
+class GanadoViewSet(viewsets.ModelViewSet):
     serializer_class = GanadoSerializer
     
     def get_queryset(self, pk=None):

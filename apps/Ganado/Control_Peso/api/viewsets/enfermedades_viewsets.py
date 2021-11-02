@@ -6,7 +6,7 @@ from apps.Users.Control_Login.api.authentication_mixed import Authentication
 from apps.Ganado.Control_Peso.api.serializers.enfermedades_serializers import EnfermedadesListSerializer , EnfermedadesSerializer
 
 
-class EnfermedadesListViewSet(Authentication ,viewsets.ModelViewSet):
+class EnfermedadesListViewSet(viewsets.ModelViewSet):
     serializer_class = EnfermedadesListSerializer
 
     def get_queryset(self, pk=None):
@@ -19,7 +19,7 @@ class EnfermedadesListViewSet(Authentication ,viewsets.ModelViewSet):
         return Response(peso.data, status=status.HTTP_200_OK)
 
 
-class EnfermedadesViewSet(Authentication, viewsets.ModelViewSet):
+class EnfermedadesViewSet(viewsets.ModelViewSet):
     serializer_class = EnfermedadesSerializer
     
     def get_queryset(self, pk=None):

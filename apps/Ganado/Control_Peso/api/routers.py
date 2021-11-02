@@ -1,6 +1,4 @@
-from rest_framework import urlpatterns
 from rest_framework.routers import DefaultRouter
-
 from apps.Ganado.Control_Peso.api.viewsets.peso_viewsets import PesoViewSet ,PesoListViewSet 
 from apps.Ganado.Control_Peso.api.viewsets.enfermedades_viewsets import EnfermedadesListViewSet ,EnfermedadesViewSet
 from apps.Ganado.Control_Peso.api.viewsets.asociadas_viewset import AsociadasListViewSet ,AsociadasViewSet

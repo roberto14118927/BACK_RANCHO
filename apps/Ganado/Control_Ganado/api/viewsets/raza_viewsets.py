@@ -6,7 +6,7 @@ from apps.Ganado.Control_Ganado.api.serializers.raza_serializers import RazaSeri
 
 
 #agregar el Authentication como primer parametro.
-class RazaViewSet(Authentication , viewsets.ModelViewSet):
+class RazaViewSet(viewsets.ModelViewSet):
     serializer_class = RazaSerializer
     queryset = RazaSerializer.Meta.model.objects.filter()
 
