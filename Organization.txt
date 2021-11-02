@@ -8,6 +8,12 @@ Usuarios:
     url + usuario/users/             --> Listar usuarios
     url + usuario/users/<id>         --> Get id , update , delete
 
+    **NOTA**
+    Para crear un usuario, unicamente son necesarios los campos de:
+        username , email , password , name , last_name.
+    
+    
+
 control Empadre:
 
     url + api/empadre/                                      --> crear empadre

@@ -19,7 +19,8 @@ class UsuarioViewSet(viewsets.ModelViewSet):
         if serialize.is_valid():
             serialize.save()
             return Response(data = serialize.data , status= status.HTTP_200_OK)
-        return Response({'message': 'No encontrado put'} , status=status.HTTP_400_BAD_REQUEST)
+        return Response(serialize.errors , status=status.HTTP_400_BAD_REQUEST)
+
 
     def delete(self, request , pk=None):
         user = UserSerializer().filter(id=pk).first()

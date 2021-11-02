@@ -6,22 +6,21 @@ from rest_framework_swagger.views import get_swagger_view
 
 from apps.Users.Control_Login.views import Login , Logout , UserToken
 
-schema_view = get_swagger_view(title='Pastebin API')
-router = routers.DefaultRouter()
-
 
 urlpatterns = [
+    
+    #Django admin
     path('admin/', admin.site.urls),
-    path('documentacion', schema_view),
 
+    #lOGIN
     path('login/' , Login.as_view()),
     path('logout/', Logout.as_view()),
     path('refresh-token/' , UserToken.as_view()),
 
     #viewsets
     path('usuario/', include("apps.Users.Control_Usuario.api.routers")),
-    path('api/' , include('apps.Ganado.Control_Ganado.api.routers')),
     path('api/' , include('apps.Ganado.Control_Peso.api.routers')),
+    path('api/' , include('apps.Ganado.Control_Ganado.api.routers')),
     path('api/' , include('apps.Ganado.Control_Empadre.api.routers')),
     path('api/' , include('apps.Inventarios.Control_IAlimentos.api.routers')),
     path('api/' , include('apps.Inventarios.Control_IMateriales.api.routers')), 
