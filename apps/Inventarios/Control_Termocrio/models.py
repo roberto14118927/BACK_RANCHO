@@ -18,7 +18,7 @@ class Inventario_termo(models.Model):
         return str(self.id)
 
     class Meta: 
-        db_table = 'Inventario_Termo'
+        db_table = 'Inventario_Termocriogenico'
 
 
 class Empadre_Termo(models.Model):
@@ -30,4 +30,4 @@ class Empadre_Termo(models.Model):
         return str(self.id_empadre)
 
     class Meta: 
-        db_table = 'Empadre_Termo'
+        db_table = 'Empadre_Termocriogenico'

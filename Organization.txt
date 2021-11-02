@@ -2,8 +2,8 @@ Urls.
 
 url = https://localhost:8000/
 
-Usuarios: 
 
+Usuarios: 
     url + usuario/create-user/       --> Crear usuario
     url + usuario/users/             --> Listar usuarios
     url + usuario/users/<id>         --> Get id , update , delete
@@ -12,7 +12,25 @@ Usuarios:
     Para crear un usuario, unicamente son necesarios los campos de:
         username , email , password , name , last_name.
     
+    Para actualizar un usuario, unicamente:
+        username , email , name , last_name , is_active (el ultimo solo cuando se deba desactivar un usuario)
+
+Login:
+
+    url + login/                        -->Login de usuarios.
+
+    **NOTA**
+    Hay que mandar los campos:
+        username , password
     
+Logout:
+
+    url + logout/
+
+    **NOTA**
+    Hay que mandar los campos como (PARAMS):
+        username 
+
 
 control Empadre:
 
@@ -20,7 +38,6 @@ control Empadre:
     url + api/empadre/<id>/                                 --> get id , update , delete
     url + api/list-empadre/                                 --> listar empadres   
     
-
     url + api/tacto/                                        --> crear tacto
     url + api/tacto/<id>/                                   --> get id , update , delete
     url + api/list-tacto/                                   --> listar tactos  
@@ -35,6 +52,7 @@ control Ganado:
 
     url + api/raza/                 --> crear raza , listar razas
     url + api/raza/<id>/            --> get id , update , delete
+
 
 control Peso:
 
@@ -52,15 +70,18 @@ control Peso:
     url + api/list-asociadas/                           --> listar ganado   
     url + api/asociadas/enfermedad-id/<id>              --> get asociación por id de enfermedad
 
+
 Control Inventario alimentos: 
 
     url + api/inventario-alimentos/                    --> crear alimentos
     url + api/inventario-alimentos/<id>/               --> get id , update , delete
 
+
 Control Inventario materiales:
 
     url + api/inventario-materiales/                    --> get ,crear inventariado de materiales
     url + api/inventario-materiales/<id>/               --> get id , update , delete
+
 
 Control Inventario insumos:
 

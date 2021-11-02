@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status, viewsets
 
-from apps.Users.Control_Usuario.api.serializer import  UserSerializer , UserListSerializer
+from apps.Users.Control_Usuario.api.serializer import  UserSerializer , UserListSerializer ,  UpdateUserSerializer
 from apps.Users.Control_Login.api.authentication_mixed import Authentication
 
 
@@ -15,7 +15,7 @@ class UsuarioViewSet(viewsets.ModelViewSet):
         return UserListSerializer().Meta.model.objects.filter().first()
 
     def update(self, request, pk=None):
-        serialize = UserSerializer(self.get_queryset(pk), data = request.data)
+        serialize = UpdateUserSerializer(self.get_queryset(pk), data = request.data)
         if serialize.is_valid():
             serialize.save()
             return Response(data = serialize.data , status= status.HTTP_200_OK)

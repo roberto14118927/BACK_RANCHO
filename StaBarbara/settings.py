@@ -122,7 +122,6 @@ CORS_ALLOW_HEADERS = [
 
 
 #El token expira en 15 minutos
-
 TOKEN_EXPIRED_AFTER_SECONDS = 900
 
 MIDDLEWARE = [
@@ -174,7 +173,7 @@ WSGI_APPLICATION = 'StaBarbara.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Barbara',
+        'NAME': 'barbaraDB',
         'USER': 'postgres',
         'PASSWORD': 'alexroque14',
         'HOST': 'localhost',
