@@ -15,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UpdateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'email', 'name', 'last_name' , 'is_active')
+        fields = ('username', 'email', 'name', 'last_name' ,'roll' , 'is_active')
 
 class UserListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,6 +30,7 @@ class UserListSerializer(serializers.ModelSerializer):
             'password': instance.password,
             'name': instance.name ,
             'last_name': instance.last_name,
+            'roll': instance.roll,
             'activo': instance.is_active
         }
 
