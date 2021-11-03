@@ -6,7 +6,7 @@ from apps.Users.Control_Medicos.api.serializers.medico_serializers import Medico
 
 
 #agregar el Authentication como primer parametro.
-class MedicoEspViewSet(viewsets.ModelViewSet):
+class MedicoEspViewSet(Authentication,viewsets.ModelViewSet):
     serializer_class = MedicoSerializers
     queryset = serializer_class().Meta.model.objects.filter()
 

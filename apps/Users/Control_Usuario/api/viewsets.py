@@ -5,14 +5,14 @@ from apps.Users.Control_Usuario.api.serializer import  UserSerializer , UserList
 from apps.Users.Control_Login.api.authentication_mixed import Authentication
 
 
-class UsuarioViewSet(viewsets.ModelViewSet):
+class UsuarioViewSet( Authentication,  viewsets.ModelViewSet):
     serializer_class = UserListSerializer
     queryset = UserListSerializer.Meta.model.objects.filter()
 
     def get_queryset(self , pk=None):
         if pk is None:
             return UserListSerializer().Meta.model.objects.filter().order_by("id")
-        return UserListSerializer().Meta.model.objects.filter().first()
+        return UserListSerializer().Meta.model.objects.filter(id=pk).first()
 
     def update(self, request, pk=None):
         serialize = UpdateUserSerializer(self.get_queryset(pk), data = request.data)

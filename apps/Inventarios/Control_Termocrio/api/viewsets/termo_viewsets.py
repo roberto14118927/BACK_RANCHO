@@ -5,7 +5,7 @@ from apps.Users.Control_Login.api.authentication_mixed import Authentication
 from apps.Inventarios.Control_Termocrio.api.serializers.termo_serializers import InventarioTermoListSerializer , InventarioTermoSerializer
 
 
-class TermoListViewSet(viewsets.ModelViewSet):
+class TermoListViewSet(Authentication ,viewsets.ModelViewSet):
     serializer_class = InventarioTermoListSerializer
 
     def get_queryset(self, pk=None):
@@ -19,7 +19,7 @@ class TermoListViewSet(viewsets.ModelViewSet):
 
 
 #agregar el Authentication como primer parametro.
-class TermoViewSet(viewsets.ModelViewSet):
+class TermoViewSet(Authentication ,viewsets.ModelViewSet):
     serializer_class = InventarioTermoSerializer
     queryset = serializer_class().Meta.model.objects.filter()
 

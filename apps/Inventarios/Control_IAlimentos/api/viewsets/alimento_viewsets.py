@@ -6,7 +6,7 @@ from apps.Inventarios.Control_IAlimentos.api.serializers.alimento_serializers im
 
 
 #agregar el Authentication como primer parametro.
-class AlimentoViewSet(viewsets.ModelViewSet):
+class AlimentoViewSet(Authentication , viewsets.ModelViewSet):
     serializer_class = InventarioAlimentosSerializer
     queryset = serializer_class().Meta.model.objects.filter()
 

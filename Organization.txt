@@ -50,8 +50,9 @@ control Ganado:
     url + api/ganado/<id>/         --> get id , update , delete
     url + api/list-ganado/         --> listar ganado   
 
-    url + api/raza/                 --> crear raza , listar razas
-    url + api/raza/<id>/            --> get id , update , delete
+    url + api/list-raza/                 --> listar razas
+    url + api/raza/                      --> crear raza
+    url + api/raza/<id>/                 --> get id , update , delete
 
 
 control Peso:

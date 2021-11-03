@@ -6,7 +6,7 @@ from apps.Inventarios.Control_IMedicos.api.serializers.insumos_serializers impor
 
 
 #agregar el Authentication como primer parametro.
-class InsumosViewSet(viewsets.ModelViewSet):
+class InsumosViewSet(Authentication ,viewsets.ModelViewSet):
     serializer_class = InventarioInsumosSerializer
     queryset = serializer_class().Meta.model.objects.filter()
 

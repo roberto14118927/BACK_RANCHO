@@ -12,10 +12,12 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         return user
     
+    
 class UpdateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'email', 'name', 'last_name' ,'roll' , 'is_active')
+
 
 class UserListSerializer(serializers.ModelSerializer):
     class Meta:

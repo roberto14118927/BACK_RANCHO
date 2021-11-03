@@ -8,7 +8,7 @@ from apps.Users.Control_Login.api.authentication_mixed import Authentication
 from apps.Ganado.Control_Empadre.api.serializers.empadre_serializers import EmpadreListSerializer , EmpadreSerializers
 
 
-class EmpadreListViewSet(viewsets.ModelViewSet):
+class EmpadreListViewSet(Authentication ,viewsets.ModelViewSet):
     serializer_class = EmpadreListSerializer
 
     def get_queryset(self, pk=None):
@@ -22,7 +22,7 @@ class EmpadreListViewSet(viewsets.ModelViewSet):
 
 
 #Agregar el Authentication
-class EmpadreViewSet(viewsets.ModelViewSet):
+class EmpadreViewSet(Authentication ,viewsets.ModelViewSet):
     serializer_class = EmpadreSerializers
     
     def get_queryset(self, pk=None):

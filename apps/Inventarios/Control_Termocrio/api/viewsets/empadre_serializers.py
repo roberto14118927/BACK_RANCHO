@@ -4,7 +4,7 @@ from rest_framework import status, viewsets
 from apps.Users.Control_Login.api.authentication_mixed import Authentication
 from apps.Inventarios.Control_Termocrio.api.serializers.empadre_serializers import EmpadreTermoListSerializers, EmpadreTermoSerializers
 
-class EmpadreListViewSet(viewsets.ModelViewSet):
+class EmpadreListViewSet(Authentication ,viewsets.ModelViewSet):
     serializer_class = EmpadreTermoListSerializers
 
     def get_queryset(self, pk=None):
@@ -18,7 +18,7 @@ class EmpadreListViewSet(viewsets.ModelViewSet):
 
 
 #agregar el Authentication como primer parametro.
-class EmpadreViewSet(viewsets.ModelViewSet):
+class EmpadreViewSet(Authentication ,viewsets.ModelViewSet):
     serializer_class = EmpadreTermoSerializers
     queryset = serializer_class().Meta.model.objects.filter()
 

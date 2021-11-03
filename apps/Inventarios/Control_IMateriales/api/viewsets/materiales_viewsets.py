@@ -6,7 +6,7 @@ from apps.Inventarios.Control_IMateriales.api.serializers.materiales_serializers
 
 
 #agregar el Authentication como primer parametro.
-class MaterialesViewSet(viewsets.ModelViewSet):
+class MaterialesViewSet(Authentication ,viewsets.ModelViewSet):
     serializer_class = InventarioMaterialesSerializer
     queryset = serializer_class().Meta.model.objects.filter()
 

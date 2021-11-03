@@ -5,7 +5,7 @@ from apps.Users.Control_Login.api.authentication_mixed import Authentication
 from apps.Users.Control_Medicos.api.serializers.empadre_serializers import EmpadreListSerializers , EmpadreMedicoSerializers
 
 
-class EmpadreListViewSet(viewsets.ModelViewSet):
+class EmpadreListViewSet(Authentication, viewsets.ModelViewSet):
     serializer_class = EmpadreListSerializers
 
     def get_queryset(self, pk=None):
@@ -19,7 +19,7 @@ class EmpadreListViewSet(viewsets.ModelViewSet):
 
 
 #agregar el Authentication como primer parametro.
-class EmpadreViewSet(viewsets.ModelViewSet):
+class EmpadreViewSet(Authentication,viewsets.ModelViewSet):
     serializer_class = EmpadreMedicoSerializers
     queryset = serializer_class().Meta.model.objects.filter()
 

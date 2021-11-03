@@ -6,7 +6,7 @@ from apps.Users.Control_Login.api.authentication_mixed import Authentication
 from apps.Ganado.Control_Empadre.api.serializers.tacto_serializers import TactoListSerializer , TactoSerializers
 
 
-class TactoListViewSet(viewsets.ModelViewSet):
+class TactoListViewSet(Authentication , viewsets.ModelViewSet):
     serializer_class = TactoListSerializer
 
     def get_queryset(self, pk=None):
@@ -20,7 +20,7 @@ class TactoListViewSet(viewsets.ModelViewSet):
 
 
 #Agregar el Authentication
-class TactoViewSet(viewsets.ModelViewSet):
+class TactoViewSet(Authentication ,viewsets.ModelViewSet):
     serializer_class = TactoSerializers
 
     def get_queryset(self, pk=None):

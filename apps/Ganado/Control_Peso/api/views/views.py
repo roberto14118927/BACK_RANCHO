@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response 
+from apps.Users.Control_Login.api.authentication_mixed import Authentication
 
 from apps.Ganado.Control_Peso.models import Peso_Ganando , Vacas_asociadas
 from apps.Ganado.Control_Peso.api.serializers.peso_serializers import PesoSerializer
@@ -8,7 +9,7 @@ from apps.Ganado.Control_Peso.api.serializers.asociadas_serializers import Asoci
 
 #------------ VIEWS PARA EL PESO DEL GANADO ---------------------------
 #TRAE EL PESO DEL GANADO POR ID
-class PesoList_By_IdGanado(APIView):
+class PesoList_By_IdGanado(Authentication , APIView):
     #permission_classes =[IsAuthenticated]
     def get (self , request , id=0):
         try:
