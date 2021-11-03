@@ -122,7 +122,7 @@ CORS_ALLOW_HEADERS = [
 
 
 #El token expira en 15 minutos
-TOKEN_EXPIRED_AFTER_SECONDS = 900
+TOKEN_EXPIRED_AFTER_SECONDS = 3600
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

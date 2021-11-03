@@ -111,3 +111,5 @@ Control Medicos Especialistas:
     url + api/empadre-medicos/<id>/                     --> get id , update , delete
     url + api/list-empadre-medicos/                     --> listar empadres medicos
 
+
+** Todas las urls a excepción de Login , y registro tienen el Metodo de Autenticación. 
