@@ -5,7 +5,7 @@ from apps.Users.Control_Usuario.api.serializer import  UserSerializer , UserList
 from apps.Users.Control_Login.api.authentication_mixed import Authentication
 
 
-class UsuarioViewSet( Authentication, viewsets.ModelViewSet):
+class UsuarioViewSet(Authentication, viewsets.ModelViewSet):
     serializer_class = UserListSerializer
     queryset = UserListSerializer.Meta.model.objects.filter()
 

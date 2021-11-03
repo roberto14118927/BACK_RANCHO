@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-kqs%pnac-lx%08o1!b@-^fk1k(f#0@4x^&k7fwa*czoe^aw-7#
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['htpps://santabarbara-back.herokuapp.com', 'localhost' , '127.0.0.1']
+ALLOWED_HOSTS = ['htpps://santabarbara-back.herokuapp.com', 'localhost' , '127.0.0.1' , 'htpps://localhost:8080']
 
 
 # Application definition
