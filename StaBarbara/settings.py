@@ -78,62 +78,26 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.FormParser',
         'rest_framework.parsers.MultiPartParser',
         'rest_framework.parsers.JSONParser',
-        #'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
 }
-
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     ],
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated',
-#     )
-# }
-
-
-#Si aun no te funciona, cambia el valor por True. 
-CORS_ORIGIN_ALLOW_ALL = True
-
-CORS_ALLOWED_ORIGINS  = [
-     "http://localhost:8000" , 
-     "http://localhost:8080" ,
-     "htpps://santabarbara-back.herokuapp.com",
-]
-
-CORS_ALLOW_METHODS = (
-    'DELETE',
-    'GET',
-    'POST',
-    'PUT',
-)
-
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-]
 
 
 #El token expira en 15 minutos
 TOKEN_EXPIRED_AFTER_SECONDS = 3600
 
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'StaBarbara.urls'
@@ -198,6 +162,41 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+#Configuration CORS 
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOWED_ORIGINS  = [
+     "http://localhost:8000" , 
+     "http://localhost:8080" ,
+     "https://santabarbara-back.herokuapp.com",
+]
+
+CORS_ORIGIN_WHITELIST = [
+     "http://localhost:8000" , 
+     "http://localhost:8080" ,
+]
+
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+)
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
 ]
 
 
