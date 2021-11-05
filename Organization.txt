@@ -46,9 +46,10 @@ control Empadre:
 
 control Ganado:
 
-    url + api/ganado/              --> crear ganado
-    url + api/ganado/<id>/         --> get id , update , delete
-    url + api/list-ganado/         --> listar ganado   
+    url + api/ganado/                  --> crear ganado
+    url + api/ganado/<id>/             --> update , delete
+    url + api/list-ganado/             --> listar ganado   
+    url + api/list-ganado/<id>         --> listar ganado por id
 
     url + api/list-raza/                 --> listar razas
     url + api/raza/                      --> crear raza
@@ -62,9 +63,9 @@ control Peso:
     url + api/list-pesos/                               --> listar ganado   
     url + api/peso/ganado-id/<id>                       --> get por id de ganado
 
-    url + api/enfermedades/                             --> crear ganado
+    url + api/enfermedades/                             --> crear enfermedad
     url + api/enfermedades/<id>/                        --> get id , update , delete
-    url + api/list-enfermedades/                        --> listar ganado    
+    url + api/list-enfermedades/                        --> listar enfermedades    
 
     url + api/asociadas/                                --> crear ganado
     url + api/asociadas/<id>/                           --> get id , update , delete

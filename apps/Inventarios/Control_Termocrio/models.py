@@ -8,7 +8,6 @@ class Inventario_termo(models.Model):
 
     num_canastilla = models.IntegerField()
     id_ganado = models.ForeignKey(Ganado , on_delete= SET_NULL , null=True)
-    raza = models.CharField(max_length=254)
     descripcion = models.CharField(max_length=254, null=True , blank=True)
     cantidad = models.IntegerField()
     comentario = models.CharField(max_length=254 , null=True , blank=True)
