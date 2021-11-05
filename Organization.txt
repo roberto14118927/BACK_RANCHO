@@ -48,8 +48,9 @@ control Ganado:
 
     url + api/ganado/                  --> crear ganado
     url + api/ganado/<id>/             --> update , delete
+
     url + api/list-ganado/             --> listar ganado   
-    url + api/list-ganado/<id>         --> listar ganado por id
+    url + api/list-ganado/<id>/         --> listar ganado por id
 
     url + api/list-raza/                 --> listar razas
     url + api/raza/                      --> crear raza
@@ -61,7 +62,7 @@ control Peso:
     url + api/pesos/                                    --> crear peso
     url + api/pesos/<id>/                               --> get id , update , delete
     url + api/list-pesos/                               --> listar ganado   
-    url + api/peso/ganado-id/<id>                       --> get por id de ganado
+    url + api/peso/ganado-id/<id>/                       --> get por id de ganado
 
     url + api/enfermedades/                             --> crear enfermedad
     url + api/enfermedades/<id>/                        --> get id , update , delete
@@ -70,7 +71,7 @@ control Peso:
     url + api/asociadas/                                --> crear ganado
     url + api/asociadas/<id>/                           --> get id , update , delete
     url + api/list-asociadas/                           --> listar ganado   
-    url + api/asociadas/enfermedad-id/<id>              --> get asociación por id de enfermedad
+    url + api/asociadas/enfermedad-id/<id>/              --> get asociación por id de enfermedad
 
 
 Control Inventario alimentos: 
