@@ -2,15 +2,15 @@ from rest_framework.response import Response
 from rest_framework import status , viewsets
 
 from apps.Users.Control_Login.api.authentication_mixed import Authentication
-from apps.Ganado.Control_Ganado.api.serializers.raza_serializers import RazaListSerializer, UpdateRazaSerializer
+from apps.Ganado.Control_Ganado.api.serializers.raza_serializers import RazaSerializer
 
 
-class RazaListViewSet( Authentication , viewsets.ModelViewSet):
-    serializer_class = RazaListSerializer
+class RazaListViewSet(viewsets.ModelViewSet):
+    serializer_class = RazaSerializer
 
     def get_queryset(self, pk=None):
         if pk is None:
-            return self.get_serializer().Meta.model.objects.filter()
+            return self.get_serializer().Meta.model.objects.filter().order_by("id")
         return self.get_serializer().Meta.model.objects.filter(id=pk).first()
 
     def list(self, request):
@@ -18,12 +18,12 @@ class RazaListViewSet( Authentication , viewsets.ModelViewSet):
         return Response(peso.data, status=status.HTTP_200_OK)
 
 
-class RazaViewSet(Authentication ,viewsets.ModelViewSet):
-    serializer_class = UpdateRazaSerializer
+class RazaViewSet(viewsets.ModelViewSet):
+    serializer_class = RazaSerializer
     
     def get_queryset(self, pk=None):
         if pk is None:
-            return self.get_serializer().Meta.model.objects.filter()
+            return self.get_serializer().Meta.model.objects.filter().order_by("id")
         return self.get_serializer().Meta.model.objects.filter(id=pk).first()
 
     def create(self, request):
