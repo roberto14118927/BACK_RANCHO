@@ -36,7 +36,7 @@ class EnfermedadesViewSet(Authentication ,viewsets.ModelViewSet):
         serializer = self.serializer_class(data=request.data)        
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'creado correctamente!'}, status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def update(self, request, pk=None):
