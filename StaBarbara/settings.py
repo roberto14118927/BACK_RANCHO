@@ -49,10 +49,13 @@ LOCAL_APPS = [
     'apps.Inventarios.Control_IAlimentos',
     'apps.Inventarios.Control_IMedicos',
     'apps.Inventarios.Control_IMateriales',
+    'apps.Inventarios.Control_Vacunacion',
+    'apps.Inventarios.Control_Desparasitacion',
 
     'apps.Users.Control_Medicos',
     'apps.Users.Control_Usuario',
     'apps.Users.Control_Login',
+    'apps.Users.Control_Notificacion',
 ]
 
 THIRD_APPS = [
@@ -123,27 +126,27 @@ WSGI_APPLICATION = 'StaBarbara.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd7enial93tg91n',
-        'USER': 'hcvvmbkwmvcbdc',
-        'PASSWORD': '464b8813b32220f39d166168e75667637a6d0043409c99e444fcb942ab61d999',
-        'HOST': 'ec2-54-210-226-209.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'barbaraDB',
-#         'USER': 'postgres',
-#         'PASSWORD': 'alexroque14',
-#         'HOST': 'localhost',
+#         'NAME': 'd7enial93tg91n',
+#         'USER': 'hcvvmbkwmvcbdc',
+#         'PASSWORD': '464b8813b32220f39d166168e75667637a6d0043409c99e444fcb942ab61d999',
+#         'HOST': 'ec2-54-210-226-209.compute-1.amazonaws.com',
 #         'PORT': '5432',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'barbaraDB',
+        'USER': 'postgres',
+        'PASSWORD': 'alexroque14',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
 
 # Password validation

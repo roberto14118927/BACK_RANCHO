@@ -27,6 +27,8 @@ urlpatterns = [
     path('api/' , include('apps.Inventarios.Control_IMedicos.api.routers')), 
     path('api/' , include('apps.Inventarios.Control_Termocrio.api.routers')), 
     path('api/' , include('apps.Users.Control_Medicos.api.routers')),
+    path('api/' , include('apps.Inventarios.Control_Vacunacion.api.routers')),
+    path('api/' , include('apps.Inventarios.Control_Desparasitacion.api.routers')),
 
     #views
     path('api/' , include('apps.Ganado.Control_Peso.api.urls')),
