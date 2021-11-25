@@ -115,10 +115,3 @@ Control Medicos Especialistas:
 
 
 ** Todas las urls a excepción de Login , y registro tienen el Metodo de Autenticación. 
-
-
-Control_Vacunacion:
-
-    url + api/control-vacunas/          ---> crear 
-    url + api/control-vacunas/<id>      ---> get id , update , delete
-    url + api/vacunas-list/             ---> listar vacunas

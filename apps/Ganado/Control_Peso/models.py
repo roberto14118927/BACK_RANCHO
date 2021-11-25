@@ -41,7 +41,6 @@ class Enfermedades_Ganado(models.Model):
     class Meta: 
         db_table = 'Enfermedades'
 
-
 #Modelo para las vacas asociadas a las enfermedades.
 class Vacas_asociadas(models.Model):
 
