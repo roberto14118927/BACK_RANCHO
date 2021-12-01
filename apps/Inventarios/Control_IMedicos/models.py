@@ -6,7 +6,7 @@ class Inventario_Insumos(models.Model):
     tipo_insumo = models.CharField(max_length=254)
     cantidad = models.IntegerField()
     lote = models.CharField(max_length=254 , null=True)
-    presentacion = models.FloatField()
+    presentacion = models.FloatField(default=0)
 
     def __str__(self):
         return str(self.id)
