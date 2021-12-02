@@ -39,6 +39,7 @@ BASE_APPS = [
     'django.contrib.staticfiles',
 ]
 
+
 LOCAL_APPS = [ 
     'apps.base',
     'apps.Ganado.Control_Ganado',
@@ -57,6 +58,7 @@ LOCAL_APPS = [
     'apps.Users.Control_Login',
     'apps.Users.Control_Notificacion',
 ]
+
 
 THIRD_APPS = [
     'rest_framework',
@@ -136,6 +138,7 @@ WSGI_APPLICATION = 'StaBarbara.wsgi.application'
 #         'PORT': '5432',
 #     }
 # }
+
 
 DATABASES = {
     'default': {
