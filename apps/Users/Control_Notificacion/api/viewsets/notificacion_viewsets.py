@@ -14,9 +14,10 @@ class NotiListViewSet(viewsets.ModelViewSet):
         return self.get_serializer().Meta.model.objects.filter(id=pk).first()
 
     def list(self, request):
-        empadre = self.get_serializer(self.get_queryset(), many=True)
-        return Response(empadre.data, status=status.HTTP_200_OK)
+        peso = self.get_serializer(self.get_queryset(), many=True)
+        return Response(peso.data, status=status.HTTP_200_OK)
 
+ 
 
 #agregar el Authentication como primer parametro.
 class NotiViewSet(viewsets.ModelViewSet):

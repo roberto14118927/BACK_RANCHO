@@ -10,5 +10,5 @@ class NotiSerializers(serializers.ModelSerializer):
 class NotiListSerializers(serializers.ModelSerializer):
     class Meta:
         model = Control_Notificacion
-        fields = ['id' , 'asunto' , 'mensaje' , 'id_usuario_emisor' , 'id_usuario_receptor']
-        depth = 50
+        fields = ['id' , 'asunto' , 'mensaje' , 'id_user_emisor' , 'id_user_receptor']
+        depth = 10
