@@ -16,16 +16,20 @@ urlpatterns = [
     path('refresh-token/' , UserToken.as_view()),
     #viewsets
     path('usuario/', include("apps.Users.Control_Usuario.api.routers")),
+    path('api/' , include('apps.Users.Control_Medicos.api.routers')),
+    path('api/' , include('apps.Users.Control_Notificacion.api.routers')),
+
     path('api/' , include('apps.Ganado.Control_Peso.api.routers')),
     path('api/' , include('apps.Ganado.Control_Ganado.api.routers')),
     path('api/' , include('apps.Ganado.Control_Empadre.api.routers')),
+   
     path('api/' , include('apps.Inventarios.Control_IAlimentos.api.routers')),
     path('api/' , include('apps.Inventarios.Control_IMateriales.api.routers')), 
     path('api/' , include('apps.Inventarios.Control_IMedicos.api.routers')), 
     path('api/' , include('apps.Inventarios.Control_Termocrio.api.routers')), 
-    path('api/' , include('apps.Users.Control_Medicos.api.routers')),
     path('api/' , include('apps.Inventarios.Control_Vacunacion.api.routers')),
     path('api/' , include('apps.Inventarios.Control_Desparasitacion.api.routers')),
+    
     #views
     path('api/' , include('apps.Ganado.Control_Peso.api.urls')),
     path('api/' , include('apps.Ganado.Control_Empadre.api.urls')),
