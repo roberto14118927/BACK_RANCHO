@@ -4,13 +4,15 @@ url = https://localhost:8000/
 
 
 Usuarios: 
-    url + usuario/create-user/       --> Crear usuario
-    url + usuario/users/             --> Listar usuarios
-    url + usuario/users/<id>         --> Get id , update , delete
+    url + api/create-user/          -->crear usuario
+    url + api/users/                --> Listar usuarios
+    url + api/users/<id>            --> Get id , update , delete
+    url + api/<id>/set_password/    --> actualizar contraseña
+
 
     **NOTA**
     Para crear un usuario, unicamente son necesarios los campos de:
-        username , email , password , name , last_name.
+        username , email , password , name , last_name, roll, is_active .
     
     Para actualizar un usuario, unicamente:
         username , email , name , last_name , is_active (el ultimo solo cuando se deba desactivar un usuario)

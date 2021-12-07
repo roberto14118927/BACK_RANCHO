@@ -15,7 +15,7 @@ urlpatterns = [
     path('logout/', Logout.as_view()),
     path('refresh-token/' , UserToken.as_view()),
     #viewsets
-    path('usuario/', include("apps.Users.Control_Usuario.api.routers")),
+    path('api/', include("apps.Users.Control_Usuario.api.routers")),
     path('api/' , include('apps.Users.Control_Medicos.api.routers')),
     path('api/' , include('apps.Users.Control_Notificacion.api.routers')),
 

@@ -18,6 +18,16 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'email', 'name', 'last_name' ,'roll' , 'is_active' , 'is_staff')
 
+class PasswordSerializer(serializers.Serializer):
+    password = serializers.CharField(max_length=128, min_length=8, write_only=True)
+    password2 = serializers.CharField(max_length=128, min_length=8, write_only=True)
+
+    def validate(self, data):
+        if data['password'] != data['password2']:
+            raise serializers.ValidationError(
+                {'password':'Las contraseñas no coinciden.'})
+        return data
+
 
 class UserListSerializer(serializers.ModelSerializer):
     class Meta:
