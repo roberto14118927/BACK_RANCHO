@@ -88,8 +88,8 @@ REST_FRAMEWORK = {
 }
 
 
-#El token expira en 15 minutos
-TOKEN_EXPIRED_AFTER_SECONDS = 3600
+#El token expira en  minutos
+TOKEN_EXPIRED_AFTER_SECONDS = 86400
 
 
 MIDDLEWARE = [

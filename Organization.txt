@@ -122,17 +122,17 @@ Control Medicos Especialistas:
 Control_Vacunacion:
 
     url + api/control-vacunas/          ---> crear 
-    url + api/control-vacunas/<id>      ---> get id , update , delete
+    url + api/control-vacunas/<id>/      ---> get id , update , delete
     url + api/vacunas-list/             ---> listar vacunas
 
-Control_Vacunacion:
+Control_desparacitacion:
 
     url + api/control-desp/          ---> crear 
-    url + api/control-desp/<id>      ---> get id , update , delete
+    url + api/control-desp/<id>/      ---> get id , update , delete
     url + api/desp-list/             ---> listar desparasitacion
 
-Control_Vacunacion:
+Control_Notificacion:
 
     url + api/control-notificacion/          ---> crear 
-    url + api/control-notificacion/<id>      ---> get id , update , delete
+    url + api/control-notificacion/<id>/      ---> get id , update , delete
     url + api/notificacion-list/             ---> listar notificaciones

@@ -37,12 +37,11 @@ class DespViewSet(viewsets.ModelViewSet):
     
     def update(self, request, pk=None):
         if self.get_queryset(pk):
-            # send information to serializer referencing the instance
-            peso = self.serializer_class(self.get_queryset(pk), data=request.data)            
-            if peso.is_valid():
-                peso.save()
-                return Response(peso.data, status=status.HTTP_200_OK)
-            return Response(peso.errors, status=status.HTTP_400_BAD_REQUEST)
+            desp = self.serializer_class(self.get_queryset(pk), data=request.data)            
+            if desp.is_valid():
+                desp.save()
+                return Response(desp.data, status=status.HTTP_200_OK)
+            return Response(desp.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self , request , pk=None):
         cow = self.get_queryset().filter(id=pk).first()
