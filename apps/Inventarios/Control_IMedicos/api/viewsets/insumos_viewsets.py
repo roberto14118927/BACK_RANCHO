@@ -22,12 +22,21 @@ class InsumosViewSet(Authentication ,viewsets.ModelViewSet):
             return Response(serializer.data , status= status.HTTP_201_CREATED)
         return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
     
-    def update(self , request , pk=None):
-        serialize = self.serializer_class(self.get_queryset(pk), data = request.data)
-        if serialize.is_valid():
-            serialize.save()
-            return Response(data = serialize.data , status= status.HTTP_200_OK)
-        return Response({'message': 'No encontrado put'} , status=status.HTTP_400_BAD_REQUEST)
+    # def update(self , request , pk=None):
+    #     serialize = self.serializer_class(self.get_queryset(pk), data = request.data)
+    #     if serialize.is_valid():
+    #         serialize.save()
+    #         return Response(data = serialize.data , status= status.HTTP_200_OK)
+    #     return Response({'message': 'No encontrado put'} , status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, pk=None):
+        if self.get_queryset(pk):
+            serializer = self.serializer_class(self.get_queryset(pk), data=request.data)            
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
     def delete(self , request , pk=None):
         cow = self.get_queryset().filter(id=pk).first()
