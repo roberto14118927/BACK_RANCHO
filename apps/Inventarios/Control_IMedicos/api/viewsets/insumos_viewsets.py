@@ -10,10 +10,10 @@ class InsumosViewSet(Authentication ,viewsets.ModelViewSet):
     serializer_class = InventarioInsumosSerializer
     queryset = serializer_class().Meta.model.objects.filter()
 
-    def get_queryset(self , pk = None):
+    def get_queryset(self, pk=None):
         if pk is None:
-            return self.serializer_class().Meta.model.objects.filter().order_by("id")
-        return self.serializer_class().Meta.model.objects.filter().first()
+            return self.get_serializer().Meta.model.objects.filter()
+        return self.get_serializer().Meta.model.objects.filter(id=pk).first()
 
     def create(self, request):
         serializer = self.serializer_class(data = request.data)
@@ -39,8 +39,8 @@ class InsumosViewSet(Authentication ,viewsets.ModelViewSet):
 
 
     def delete(self , request , pk=None):
-        cow = self.get_queryset().filter(id=pk).first()
-        if cow:
-            cow.delete()
+        serializer = self.get_queryset().filter(id=pk).first()
+        if serializer:
+            serializer.delete()
             return Response({'message': 'Eliminado'} , status= status.HTTP_200_OK)
         return Response(status= status.HTTP_400_BAD_REQUEST)
