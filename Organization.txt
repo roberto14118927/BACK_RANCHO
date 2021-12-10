@@ -25,6 +25,10 @@ Login:
     Hay que mandar los campos:
         username , password
     
+refresh-token:
+
+    url + refresh-token/?username=<username> 
+
 Logout:
 
     url + logout/
