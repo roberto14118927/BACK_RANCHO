@@ -15,6 +15,8 @@ class Control_Empadre(models.Model):
     estado_servicio = models.CharField(max_length=254)
     
     fecha_parto = models.CharField(max_length=10 , null=True)
+    fecha_aborto = models.CharField(max_length=254 , null=True)
+
     id_toro = models.ForeignKey(Ganado ,on_delete= SET_NULL, related_name='id_vaca' , null=True)
     vaca_id = models.ForeignKey(Ganado , on_delete= SET_NULL , related_name='id_toro', null=True)
 
