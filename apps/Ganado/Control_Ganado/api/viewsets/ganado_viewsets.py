@@ -7,8 +7,15 @@ from apps.Ganado.Control_Ganado.models import Ganado
 from apps.Users.Control_Login.api.authentication_mixed import Authentication
 from apps.Ganado.Control_Ganado.api.serializers.ganado_serializers import GanadoSerializer , GanadoListSerializer
 
+from rest_framework.decorators import action
+import django_excel as excel
+from pyexcel_xlsx import save_data
+from collections import OrderedDict
+from datetime import datetime
+import json
 
-class GanadoListViewSet(Authentication , viewsets.ModelViewSet):
+
+class GanadoListViewSet(viewsets.ModelViewSet): # agregar autenticacion
     serializer_class = GanadoListSerializer
 
     def get_queryset(self, pk=None):
@@ -19,6 +26,34 @@ class GanadoListViewSet(Authentication , viewsets.ModelViewSet):
     def list(self, request):
         peso = self.get_serializer(self.get_queryset(), many=True)
         return Response(peso.data, status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=['GET'], name='excel')
+    def excel(self, request, *args, **kwargs):
+        ganado = self.get_serializer(self.get_queryset(), many=True)
+        export = [] 
+        export.append(['Inventario de ganado'])
+        export.append(['Nombre', 'Sexo','Raza','N.Económico','N.Registro','N.Siniga','Fecha de nacimiento','Fecha de entrada al hato','estado','Condicion Estadia'])
+        # dict_items = ganado.data.items()
+        for value in ganado.data:
+            # print(value)
+            lista = json.dumps(list(value.items()))
+            # print(lista)
+            data = json.loads(lista)
+            razaAux = json.dumps(data[13][1])
+            raza = json.loads(razaAux)
+            sexoAux = json.dumps(data[2][1])
+            sexo = json.loads(sexoAux)
+            export.append([data[1][1], data[2][1], raza.get("raza"),data[3][1], data[4][1],
+            data[5][1],data[7][1],data[10][1], data[11][1], data[12][1]])
+            
+           
+        # Transcribir la data a una hoja de calculo en memoria
+        sheet = excel.pe.Sheet(export)
+        #save_data("your_file.xlsx", export)
+
+        # Generar el archivo desde la hoja en memoria con 
+        # un nombre de archivo que recibirás en el navegador
+        return excel.make_response(sheet, "xlsx", file_name="results.xlsx")
 
 
 #Agregar el Authentication
