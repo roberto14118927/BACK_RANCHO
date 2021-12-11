@@ -23,10 +23,10 @@ class DespViewSet(viewsets.ModelViewSet):
     serializer_class = DespSerializers
     queryset = serializer_class().Meta.model.objects.filter()
 
-    def get_queryset(self , pk = None):
+    def get_queryset(self, pk=None):
         if pk is None:
-            return self.serializer_class().Meta.model.objects.filter().order_by("id")
-        return self.serializer_class().Meta.model.objects.filter().first()
+            return self.get_serializer().Meta.model.objects.filter()
+        return self.get_serializer().Meta.model.objects.filter(id=pk).first()
 
     def create(self, request):
         serializer = self.serializer_class(data = request.data)
@@ -34,14 +34,15 @@ class DespViewSet(viewsets.ModelViewSet):
             serializer.save()
             return Response(serializer.data , status= status.HTTP_201_CREATED)
         return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
-    
+        
     def update(self, request, pk=None):
         if self.get_queryset(pk):
-            desp = self.serializer_class(self.get_queryset(pk), data=request.data)            
-            if desp.is_valid():
-                desp.save()
-                return Response(desp.data, status=status.HTTP_200_OK)
-            return Response(desp.errors, status=status.HTTP_400_BAD_REQUEST)
+            serializer = self.serializer_class(self.get_queryset(pk), data=request.data)            
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
     def delete(self , request , pk=None):
         cow = self.get_queryset().filter(id=pk).first()
