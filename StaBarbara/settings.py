@@ -143,10 +143,10 @@ WSGI_APPLICATION = 'StaBarbara.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'barbaraDB',
+        'NAME': 'barbaradb',
         'USER': 'ranchouser',
         'PASSWORD': '12345678',
-        'HOST': 'localhost',
+        'HOST': '3.141.8.45',
         'PORT': '5432',
     }
 }
