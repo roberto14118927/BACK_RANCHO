@@ -6,9 +6,11 @@ import environ
 
 # Initialise environment variables
 env = environ.Env()
-environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # SECRET_KEY = 'django-insecure-kqs%pnac-lx%08o1!b@-^fk1k(f#0@4x^&k7fwa*czoe^aw-7#'
 SECRET_KEY = env.str('SECRET_KEY', '123')

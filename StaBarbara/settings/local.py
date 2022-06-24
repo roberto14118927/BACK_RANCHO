@@ -3,18 +3,18 @@ from .base import *
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'http://127.0.0.1:8000',
-    'http://localhost:8000'
+    '127.0.0.1',
+    'localhost'
 
 ]
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rancho',
-        'USER': 'ranchouser',
-        'PASSWORD': 'admin',
-        'HOST': 'postgres',
+        'NAME': env.str('DB_NAME'),
+        'USER': env.str('DB_USER'),
+        'PASSWORD': env.str('DB_PASSWORD'),
+        'HOST': env.str('DB_HOST'),
         'PORT': '5432',
     }
 }
