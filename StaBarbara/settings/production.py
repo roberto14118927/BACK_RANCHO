@@ -6,16 +6,17 @@ ALLOWED_HOSTS = [
     "https://santabarbara-back.herokuapp.com",
 ]
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rancho',
-        'USER': 'ranchouser',
-        'PASSWORD': 'admin',
-        'HOST': 'postgres',
-        'PORT': '5432',
-    }
-}
+# Set database config
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'rancho',
+#         'USER': 'ranchouser',
+#         'PASSWORD': 'admin',
+#         'HOST': 'postgres',
+#         'PORT': '5432',
+#     }
+# }
 
 #Configuration CORS 
 CORS_ALLOWED_ORIGINS  = [
