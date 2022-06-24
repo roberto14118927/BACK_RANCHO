@@ -10,7 +10,7 @@ services:
     volumes:
       - db-rancho:/var/lib/postgresql/data
     environment:
-      - POSTGRES_NAME=rancho
+      - POSTGRES_DB=rancho
       - POSTGRES_USER=ranchouser
       - POSTGRES_PASSWORD=admin
 
