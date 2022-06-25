@@ -23,6 +23,11 @@ services:
       - .:/app
     depends_on:
       - postgres
+    environment:
+      - DB_NAME=rancho
+      - DB_USER=ranchouser
+      - DB_PASSWORD=admin
+      - DB_HOST=postgres
 
 volumes:
   db-rancho:
