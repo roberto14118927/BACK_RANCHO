@@ -2,10 +2,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from rest_framework_swagger.views import get_swagger_view
-
 from apps.Users.Control_Login.views import Login , Logout , UserToken
 
+#Swagger
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='API StaBarbara')
 
 urlpatterns = [
     #Django admin
@@ -33,5 +35,8 @@ urlpatterns = [
     #views
     path('api/' , include('apps.Ganado.Control_Peso.api.urls')),
     path('api/' , include('apps.Ganado.Control_Empadre.api.urls')),
+
+    #swagger
+    path('docs/', schema_view, name='schema-swagger-ui'),
 ]
 
