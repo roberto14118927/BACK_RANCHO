@@ -75,18 +75,6 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
-SWAGGER_SETTINGS = {
-    'SECURITY_DEFINITIONS': {
-        'Basic': {'type': 'basic'},
-        'Bearer': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'description': 'SimpleJWT',
-            'in': 'header',
-        },
-    }
-}
-
 
 #El token expira en  minutos
 TOKEN_EXPIRED_AFTER_SECONDS = 86400
