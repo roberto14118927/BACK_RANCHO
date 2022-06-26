@@ -51,6 +51,7 @@ THIRD_APPS = [
     'rest_framework_swagger',
     'rest_framework.authtoken',
     'corsheaders',
+    'drf_yasg2'
 ]
 
 
@@ -71,6 +72,19 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser',
         'rest_framework.authentication.TokenAuthentication',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+}
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Basic': {'type': 'basic'},
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'description': 'SimpleJWT',
+            'in': 'header',
+        },
+    }
 }
 
 
@@ -105,6 +119,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                'staticfiles': 'django.templatetags.static',
+            },
         },
     },
 ]
