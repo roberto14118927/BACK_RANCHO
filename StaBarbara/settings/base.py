@@ -50,8 +50,7 @@ THIRD_APPS = [
     'rest_framework',
     'rest_framework_swagger',
     'rest_framework.authtoken',
-    'corsheaders',
-    'drf_yasg2'
+    'corsheaders'
 ]
 
 
