@@ -2,7 +2,7 @@ from .base import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["18.216.104.88"]
+ALLOWED_HOSTS = ["18.216.104.88", "18.118.165.84"]
 
 DATABASES = {
     "default": {
@@ -18,6 +18,7 @@ DATABASES = {
 # Configuration CORS
 CORS_ALLOWED_ORIGINS = [
     "http://18.216.104.88:8000",
+    "http://18.118.165.84"
 ]
 
 CORS_ALLOW_METHODS = (
