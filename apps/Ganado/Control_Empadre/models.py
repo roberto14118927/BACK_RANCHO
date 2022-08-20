@@ -20,6 +20,9 @@ class Control_Empadre(models.Model):
     id_toro = models.ForeignKey(Ganado ,on_delete= SET_NULL, related_name='id_vaca' , null=True)
     vaca_id = models.ForeignKey(Ganado , on_delete= SET_NULL , related_name='id_toro', null=True)
 
+    observaciones = models.TextField(max_length=254, null=True)
+    linea_sanguina_embrion = models.CharField(max_length=254, null=True)
+
     def __str__(self):
         return str(self.id)
 

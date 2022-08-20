@@ -14,9 +14,15 @@ from collections import OrderedDict
 from datetime import datetime
 import json
 
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 class GanadoListViewSet(viewsets.ModelViewSet): # agregar autenticacion
+    queryset = Ganado.objects.all()
     serializer_class = GanadoListSerializer
+    filter_backends = (SearchFilter, DjangoFilterBackend)
+    search_fields = ['num_registro']
+
 
     def get_queryset(self, pk=None):
         if pk is None:
@@ -24,8 +30,10 @@ class GanadoListViewSet(viewsets.ModelViewSet): # agregar autenticacion
         return self.get_serializer().Meta.model.objects.filter(id=pk).first()
 
     def list(self, request):
-        peso = self.get_serializer(self.get_queryset(), many=True)
+        queryset = self.filter_queryset(self.get_queryset())
+        peso = self.get_serializer(queryset, many=True)
         return Response(peso.data, status=status.HTTP_200_OK)
+
     
     @action(detail=False, methods=['GET'], name='excel')
     def excel(self, request, *args, **kwargs):
