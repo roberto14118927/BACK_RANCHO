@@ -15,7 +15,8 @@ class Raza(models.Model):
 class Ganado(models.Model):
 
     nombre = models.CharField(max_length=254 , unique=True)
-    sexo = models.CharField(max_length=254)
+    sexo = models.CharField(max_length=1, choices=(('M', 'Macho'), ('H', 'Hembra')), default='M')
+    
     #foreing Key 
     id_raza = models.ForeignKey(Raza, on_delete= SET_NULL, related_name="id_raza", null=True)  
    
@@ -25,12 +26,14 @@ class Ganado(models.Model):
     comentarios = models.CharField(max_length=254, null=True , blank=True)
     fecha_nacimiento =  models.CharField(max_length=10 , null=True)
     
-    padre = models.CharField(max_length=254 , blank=True)
-    madre = models.CharField(max_length=254 , blank=True)
-    
+    padre = models.ForeignKey('self', on_delete=SET_NULL, related_name="+", null=True, blank=True)
+    madre = models.ForeignKey('self', on_delete=SET_NULL, related_name="+", null=True, blank=True)
+
     fecha_entrada_hato = models.CharField(max_length=10, null=True)
     estado = models.CharField(max_length=254)
     condicion_estadia = models.CharField(max_length=254)
+
+    info_ganado_externo = models.JSONField(null=True, blank=True)
   
 
     def __str__(self):
