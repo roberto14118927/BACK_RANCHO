@@ -3,7 +3,7 @@ from .base import *
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "https://santabarbara-back.herokuapp.com",
+    "*",
 ]
 
 # Set database config
