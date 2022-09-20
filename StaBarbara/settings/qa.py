@@ -17,8 +17,8 @@ DATABASES = {
 
 # Configuration CORS
 CORS_ALLOWED_ORIGINS = [
-    "http://18.216.104.88:8000",
-    "http://18.118.165.84"
+    "http://54.152.3.65:8000",
+    "http://50.17.14.2"
 ]
 
 CORS_ALLOW_METHODS = (
