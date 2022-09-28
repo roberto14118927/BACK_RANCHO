@@ -24,12 +24,11 @@ class UserToken(APIView):
 class Login(ObtainAuthToken):
     
     def post(self, request, *args, **kwargs):
-        
         login_serializer = self.serializer_class(data = request.data , context = {'request' : request})
 
         if login_serializer.is_valid():
             user = login_serializer.validated_data['user']
-            if user.is_active:
+            if user:
                 token , created = Token.objects.get_or_create(user = user)
                 user_serializer = UserTokenSerializer(user)
                 if created: 
@@ -40,9 +39,14 @@ class Login(ObtainAuthToken):
                     } , status= status.HTTP_201_CREATED)
                 else:
                     token.delete()
-                    return Response({
-                        'message': 'Hay una sesión iniciada con este usuario.'
-                    } , status= status.HTTP_409_CONFLICT)
+                    token , created = Token.objects.get_or_create(user = user)
+                    user_serializer = UserTokenSerializer(user)
+                    if created: 
+                        return Response({
+                            'token': token.key,
+                            'user': user_serializer.data,
+                            'message': 'Inicio de sesión exitoso'
+                        } , status= status.HTTP_201_CREATED)
             else:
                 return Response({'message':'Usuario no permitido.'} , status=status.HTTP_401_UNAUTHORIZED)
         else:
