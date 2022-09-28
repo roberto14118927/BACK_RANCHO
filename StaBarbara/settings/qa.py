@@ -17,7 +17,7 @@ DATABASES = {
 
 # Configuration CORS
 CORS_ALLOWED_ORIGINS = [
-    "http://ranchosantabarbara.ddns.net",
+    "ranchosantabarbara.ddns.net",
     "http://54.152.3.65:8000",
     "http://50.17.14.2",
     "http://localhost:5173"
