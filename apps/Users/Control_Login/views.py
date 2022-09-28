@@ -22,37 +22,52 @@ class UserToken(APIView):
 
 # Create your views here.
 class Login(ObtainAuthToken):
-    
     def post(self, request, *args, **kwargs):
-        login_serializer = self.serializer_class(data = request.data , context = {'request' : request})
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
 
-        if login_serializer.is_valid():
-            user = login_serializer.validated_data['user']
-            if user:
-                token , created = Token.objects.get_or_create(user = user)
-                user_serializer = UserTokenSerializer(user)
-                if created: 
-                    return Response({
-                        'token': token.key,
-                        'user': user_serializer.data,
-                        'message': 'Inicio de sesión exitoso'
-                    } , status= status.HTTP_201_CREATED)
-                else:
-                    token.delete()
-                    token , created = Token.objects.get_or_create(user = user)
-                    user_serializer = UserTokenSerializer(user)
-                    if created: 
-                        return Response({
-                            'token': token.key,
-                            'user': user_serializer.data,
-                            'message': 'Inicio de sesión exitoso'
-                        } , status= status.HTTP_201_CREATED)
-            else:
-                return Response({'message':'Usuario no permitido.'} , status=status.HTTP_401_UNAUTHORIZED)
+        if serializer.is_valid():
+            serializer.is_valid(raise_exception=True)
+            user = serializer.validated_data['user']
+            token, created = Token.objects.get_or_create(user=user)
+            user_serializer = UserTokenSerializer(user)
+            return Response({
+                'token': token.key,
+                'user': user_serializer.data,
+                'message': 'Inicio de sesión exitoso'
+            })
         else:
-            return Response({'message':'Usuario o contraseña incorrectos.'} , status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message':'Usuario o contraseña incorrectos.'} , status=status.HTTP_400_BAD_REQUEST)    
+    # def post(self, request, *args, **kwargs):
+    #     login_serializer = self.serializer_class(data = request.data , context = {'request' : request})
 
-        return Response({'message': 'Login response.'} , status= status.HTTP_200_OK)
+    #     if login_serializer.is_valid():
+    #         user = login_serializer.validated_data['user']
+    #         if user:
+    #             token , created = Token.objects.get_or_create(user = user)
+    #             user_serializer = UserTokenSerializer(user)
+    #             if created: 
+    #                 return Response({
+    #                     'token': token.key,
+    #                     'user': user_serializer.data,
+    #                     'message': 'Inicio de sesión exitoso'
+    #                 } , status= status.HTTP_201_CREATED)
+    #             else:
+    #                 token.delete()
+    #                 token , created = Token.objects.get_or_create(user = user)
+    #                 user_serializer = UserTokenSerializer(user)
+    #                 if created: 
+    #                     return Response({
+    #                         'token': token.key,
+    #                         'user': user_serializer.data,
+    #                         'message': 'Inicio de sesión exitoso'
+    #                     } , status= status.HTTP_201_CREATED)
+    #         else:
+    #             return Response({'message':'Usuario no permitido.'} , status=status.HTTP_401_UNAUTHORIZED)
+    #     else:
+    #         return Response({'message':'Usuario o contraseña incorrectos.'} , status=status.HTTP_400_BAD_REQUEST)
+
+    #     return Response({'message': 'Login response.'} , status= status.HTTP_200_OK)
 
 
 class Logout(APIView):
@@ -61,7 +76,6 @@ class Logout(APIView):
     def get(self , request , *args , **kwars):
         try:
             token = request.GET.get('token')
-            print(token)
             token = Token.objects.filter(key = token).first()
             if token:
                 user = token.user
